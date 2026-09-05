@@ -37,16 +37,16 @@ export function SiteHeader() {
   return (
     <>
       <div
-        className={`pointer-events-auto fixed inset-x-0 top-0 z-40 h-nav bg-[#1d1a1733]backdrop-blur-xs transition-opacity duration-500 ease-expo-out ${
+        className={`pointer-events-auto fixed inset-x-0 top-0 z-40 h-nav bg-white/60 backdrop-blur-xs transition-opacity duration-500 ease-expo-out ${
           shopOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setShopOpen(false)}
       />
       <header
-        className={`absolute inset-x-0 top-0 px-5 py-4 lg:px-12.5 ${
+        className={`absolute inset-x-0 top-0 px-5 lg:px-12.5 ${
           shopOpen
-            ? "pointer-events-none z-50 border-b-[0.5px] border-nav-line"
-            : "z-20 border-b-[0.5px] border-white"
+            ? "pointer-events-none z-50 h-nav border-b-[0.5px] border-nav-line py-0"
+            : "z-20 border-b-[0.5px] border-white py-4"
         }`}
       >
         <nav
@@ -85,11 +85,11 @@ export function SiteHeader() {
 
         <nav
           aria-label="Navigation principale"
-          className={`hidden grid-cols-[1fr_auto_1fr] items-center lg:grid ${
+          className={`hidden h-full grid-cols-[1fr_auto_1fr] items-center lg:grid ${
             shopOpen ? "pointer-events-auto" : ""
           }`}
         >
-          <div className="flex items-center gap-5 justify-self-start">
+          <div className="flex h-full items-center gap-5 justify-self-start">
             <button
               type="button"
               aria-expanded={shopOpen}
@@ -97,7 +97,7 @@ export function SiteHeader() {
               onClick={() => setShopOpen((open) => !open)}
               className={
                 shopOpen
-                  ? "border-b-2 border-muted text-[20px] leading-6 tracking-[-0.2px] text-ink"
+                  ? "flex h-full items-center border-b-2 border-muted text-[20px] leading-6 tracking-[-0.2px] text-ink"
                   : navLinkClass
               }
             >
@@ -108,7 +108,9 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setShopOpen(false)}
-                className={shopOpen ? shopNavClass : navLinkClass}
+                className={
+                  shopOpen ? `flex h-full items-center ${shopNavClass}` : navLinkClass
+                }
               >
                 {item.label}
               </Link>
@@ -117,7 +119,7 @@ export function SiteHeader() {
               href="/#iconiques"
               onClick={() => setShopOpen(false)}
               className={`flex items-center gap-2 ${
-                shopOpen ? shopNavClass : navLinkClass
+                shopOpen ? `h-full ${shopNavClass}` : navLinkClass
               }`}
             >
               <Icon
