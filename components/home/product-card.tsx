@@ -21,7 +21,7 @@ export function ProductCard({
   return (
     <article className={`group relative flex flex-col items-center gap-4 ${widthClass}`}>
       <div
-        className={`relative w-full ${layout === "full" ? "h-[181px]" : "h-[181px] lg:h-[383px]"}`}
+        className={`relative w-full ${layout === "full" ? "h-45.25" : "h-45.25 lg:h-95.75"}`}
       >
         <Image
           src={product.image}
@@ -36,8 +36,8 @@ export function ProductCard({
                 : "(max-width: 1023px) calc((100vw - 60px) / 2), calc((100vw - 196px) / 4)"
           }
         />
-        <div className="absolute left-1/2 top-[141px] hidden w-[157px] -translate-x-1/2 items-center justify-between bg-white px-3 py-2 group-hover:flex lg:top-[323px] lg:w-[304px] lg:px-6 lg:py-3">
-          <span className="whitespace-nowrap text-[12px] leading-[14px] tracking-[-0.12px] text-black lg:text-[20px] lg:leading-6 lg:tracking-[-0.2px]">
+        <div className="absolute cursor-pointer inset-x-1 bottom-2.5 hidden items-center justify-between bg-white px-3 py-2 group-hover:flex lg:inset-x-[3.5px] lg:bottom-3 lg:px-6 lg:py-3">
+          <span className="whitespace-nowrap text-[12px] leading-3.5 tracking-[-0.12px] text-black lg:text-[20px] lg:leading-6 lg:tracking-[-0.2px]">
             Ajouter au panier
           </span>
           <span className="lg:hidden">
