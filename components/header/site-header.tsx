@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { MobileMenu } from "@/components/header/mobile-menu";
 import { ShopMenu } from "@/components/header/shop-menu";
 import { Icon } from "@/components/ui/icon";
 import { useNavLine } from "@/hooks/use-nav-line";
@@ -35,9 +36,10 @@ function Logo({ dark }: { dark: boolean }) {
 
 export function SiteHeader() {
   const [shopOpen, setShopOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [sentinelRef, inverted] = useOffscreen();
   const { headerRef, pinnedRef, bind } = useNavLine(shopOpen);
-  const dark = inverted || shopOpen;
+  const dark = inverted || shopOpen || mobileOpen;
   const leftLinkClass = shopOpen ? mutedLinkClass : navLinkClass;
 
   return (
@@ -75,31 +77,14 @@ export function SiteHeader() {
             dark ? "text-ink" : "text-white"
           }`}
         >
-          <details className="relative">
-            <summary className="cursor-pointer text-[20px] tracking-[-0.2px]">
-              Menu
-            </summary>
-            <div className="absolute left-0 top-full z-30 mt-3 flex w-52 flex-col bg-cream px-4 py-3 text-[16px] text-ink shadow-sm">
-              <Link href="/#iconiques" className="cursor-pointer py-1.5">
-                E- Shop
-              </Link>
-              {desktopLeft.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="cursor-pointer py-1.5"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link href="/#iconiques" className="cursor-pointer py-1.5">
-                Recherche
-              </Link>
-              <Link href="/#footer" className="cursor-pointer py-1.5">
-                Le Club Laduree
-              </Link>
-            </div>
-          </details>
+          <button
+            type="button"
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen(true)}
+            className="cursor-pointer text-[20px] tracking-[-0.2px]"
+          >
+            Menu
+          </button>
           <Logo dark={dark} />
           <Link
             href="/#footer"
@@ -176,6 +161,7 @@ export function SiteHeader() {
         </nav>
       </header>
       <ShopMenu open={shopOpen} onOpenChange={setShopOpen} />
+      <MobileMenu open={mobileOpen} onOpenChange={setMobileOpen} />
     </>
   );
 }
