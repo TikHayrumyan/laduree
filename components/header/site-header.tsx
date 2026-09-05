@@ -14,7 +14,7 @@ const navLinkClass =
   "text-[20px] leading-6 tracking-[-0.2px] text-white transition-opacity hover:opacity-70";
 
 const shopNavClass =
-  "text-[20px] leading-6 tracking-[-0.2px] text-ink transition-opacity hover:opacity-70";
+  "text-[20px] leading-6 tracking-[-0.2px] text-muted transition-opacity hover:opacity-70";
 
 function Logo() {
   return (
@@ -36,10 +36,16 @@ export function SiteHeader() {
 
   return (
     <>
+      <div
+        className={`pointer-events-auto fixed inset-x-0 top-0 z-40 h-nav bg-black/10 backdrop-blur-xs transition-opacity duration-500 ease-expo-out ${
+          shopOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={() => setShopOpen(false)}
+      />
       <header
         className={`absolute inset-x-0 top-0 px-5 py-4 lg:px-12.5 ${
           shopOpen
-            ? "z-50 border-b-[0.5px] border-nav-line backdrop-blur-md"
+            ? "pointer-events-none z-50 border-b-[0.5px] border-nav-line"
             : "z-20 border-b-[0.5px] border-white"
         }`}
       >
@@ -79,7 +85,9 @@ export function SiteHeader() {
 
         <nav
           aria-label="Navigation principale"
-          className="hidden grid-cols-[1fr_auto_1fr] items-center lg:grid"
+          className={`hidden grid-cols-[1fr_auto_1fr] items-center lg:grid ${
+            shopOpen ? "pointer-events-auto" : ""
+          }`}
         >
           <div className="flex items-center gap-5 justify-self-start">
             <button
