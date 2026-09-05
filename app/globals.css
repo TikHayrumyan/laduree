@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: #fefbf4;
+  --color-cream-warm: #f7efdc;
+  --color-cream-soft: #f9f7eb;
+  --color-sage: #dce7c6;
+  --color-ink: #2e2c2a;
+  --color-muted: #626160;
+  --color-wine: #672d45;
+  --color-blush: #fadbe1;
+  --color-line: #d6d2cc;
+  --color-footer-line: #bebdbb;
+  --font-serif: var(--font-garamond), "EB Garamond", ui-serif, Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-serif);
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details .icon-minus {
+  display: none;
+}
+
+details[open] .icon-minus {
+  display: inline-flex;
+}
+
+details[open] .icon-plus {
+  display: none;
 }
