@@ -7,6 +7,9 @@ const desktopLeft = [
   { href: "/#maison", label: "La Maison" },
 ] as const;
 
+const navLinkClass =
+  "text-[20px] tracking-[-0.2px] text-white transition-opacity hover:opacity-70";
+
 function Logo() {
   return (
     <Link
@@ -33,19 +36,19 @@ export function SiteHeader() {
           <summary className="cursor-pointer text-[20px] tracking-[-0.2px] text-white">
             Menu
           </summary>
-          <ul className="absolute left-0 top-full z-30 mt-3 w-52 bg-cream px-4 py-3 text-[16px] text-ink shadow-sm">
+          <div className="absolute left-0 top-full z-30 mt-3 flex w-52 flex-col bg-cream px-4 py-3 text-[16px] text-ink shadow-sm">
             {desktopLeft.map((item) => (
-              <li key={item.href} className="py-1.5">
-                <Link href={item.href}>{item.label}</Link>
-              </li>
+              <Link key={item.href} href={item.href} className="py-1.5">
+                {item.label}
+              </Link>
             ))}
-            <li className="py-1.5">
-              <Link href="/#iconiques">Recherche</Link>
-            </li>
-            <li className="py-1.5">
-              <Link href="/#footer">Le Club Laduree</Link>
-            </li>
-          </ul>
+            <Link href="/#iconiques" className="py-1.5">
+              Recherche
+            </Link>
+            <Link href="/#footer" className="py-1.5">
+              Le Club Laduree
+            </Link>
+          </div>
         </details>
         <Logo />
         <Link href="/#footer" className="text-[20px] tracking-[-0.2px] text-white">
@@ -57,53 +60,30 @@ export function SiteHeader() {
         aria-label="Navigation principale"
         className="hidden grid-cols-[1fr_auto_1fr] items-center lg:grid"
       >
-        <ul className="flex items-center gap-5 justify-self-start">
+        <div className="flex items-center gap-5 justify-self-start">
           {desktopLeft.map((item) => (
-            <li key={item.href}>
-              <Link
-                href={item.href}
-                className="text-[20px] tracking-[-0.2px] text-white transition-opacity hover:opacity-70"
-              >
-                {item.label}
-              </Link>
-            </li>
+            <Link key={item.href} href={item.href} className={navLinkClass}>
+              {item.label}
+            </Link>
           ))}
-          <li>
-            <Link
-              href="/#iconiques"
-              className="flex items-center gap-2 text-[20px] tracking-[-0.2px] text-white transition-opacity hover:opacity-70"
-            >
-              <Icon src="/icons/search.svg" alt="" size={18} />
-              Recherche
-            </Link>
-          </li>
-        </ul>
+          <Link href="/#iconiques" className={`flex items-center gap-2 ${navLinkClass}`}>
+            <Icon src="/icons/search.svg" alt="" size={18} />
+            Recherche
+          </Link>
+        </div>
         <Logo />
-        <ul className="flex items-center justify-end gap-5 justify-self-end">
-          <li>
-            <Link
-              href="/#footer"
-              className="text-[20px] tracking-[-0.2px] text-white transition-opacity hover:opacity-70"
-            >
-              Le Club Laduree
-            </Link>
-          </li>
-          <li>
-            <span className="text-[20px] tracking-[-0.2px] text-white">
-              FR/FR
-            </span>
-          </li>
-          <li>
-            <Link href="/#footer" aria-label="Compte">
-              <Icon src="/icons/user.svg" alt="" size={20} />
-            </Link>
-          </li>
-          <li>
-            <Link href="/#footer" aria-label="Panier">
-              <Icon src="/icons/bag.svg" alt="" size={28} />
-            </Link>
-          </li>
-        </ul>
+        <div className="flex items-center justify-end gap-5 justify-self-end">
+          <Link href="/#footer" className={navLinkClass}>
+            Le Club Laduree
+          </Link>
+          <span className="text-[20px] tracking-[-0.2px] text-white">FR/FR</span>
+          <Link href="/#footer" className="flex items-center justify-center" aria-label="Compte">
+            <Icon src="/icons/user.svg" alt="" size={20} />
+          </Link>
+          <Link href="/#footer" className="flex items-center justify-center" aria-label="Panier">
+            <Icon src="/icons/bag.svg" alt="" size={28} />
+          </Link>
+        </div>
       </nav>
     </header>
   );
