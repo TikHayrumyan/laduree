@@ -45,7 +45,7 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
                   key={item.id}
                   type="button"
                   onClick={() => setModeId(item.id)}
-                  className={`flex flex-1 items-center justify-center px-5 py-4 text-[18px] leading-5.5 tracking-[-0.18px] ${
+                  className={`flex flex-1 cursor-pointer items-center justify-center px-5 py-4 text-[18px] leading-5.5 tracking-[-0.18px] ${
                     active
                       ? "border border-muted text-ink"
                       : "border border-nav-line text-muted"
@@ -72,7 +72,7 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
                         key={link}
                         href="/#iconiques"
                         onClick={close}
-                        className="hover:text-ink"
+                        className="cursor-pointer hover:text-ink"
                       >
                         {link}
                       </Link>

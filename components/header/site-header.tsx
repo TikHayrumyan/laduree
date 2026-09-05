@@ -12,16 +12,19 @@ const desktopLeft = [
 ] as const;
 
 const navLinkClass =
-  "text-[20px] leading-6 tracking-[-0.2px] transition-opacity hover:opacity-70";
+  "flex h-full cursor-pointer items-center border-b-1 border-transparent text-[20px] leading-6 tracking-[-0.2px] hover:border-current";
 
 const mutedLinkClass =
-  "text-[20px] leading-6 tracking-[-0.2px] text-muted transition-opacity hover:opacity-70";
+  "flex h-full cursor-pointer items-center border-b-1 border-transparent text-[20px] leading-6 tracking-[-0.2px] text-muted hover:border-current";
+
+const shopActiveClass =
+  "flex h-full cursor-pointer items-center border-b-1 border-current text-[20px] leading-6 tracking-[-0.2px]";
 
 function Logo({ dark }: { dark: boolean }) {
   return (
     <Link
       href="/"
-      className={`flex w-36.25 flex-col items-center ${dark ? "text-ink" : "text-white"}`}
+      className={`flex w-36.25 cursor-pointer flex-col items-center ${dark ? "text-ink" : "text-white"}`}
       aria-label="Ladurée Paris, accueil"
     >
       <span className="text-[32px] leading-9.5 lg:-mb-1">LADUREE</span>
@@ -65,24 +68,31 @@ export function SiteHeader() {
               Menu
             </summary>
             <div className="absolute left-0 top-full z-30 mt-3 flex w-52 flex-col bg-cream px-4 py-3 text-[16px] text-ink shadow-sm">
-              <Link href="/#iconiques" className="py-1.5">
+              <Link href="/#iconiques" className="cursor-pointer py-1.5">
                 E- Shop
               </Link>
               {desktopLeft.map((item) => (
-                <Link key={item.href} href={item.href} className="py-1.5">
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="cursor-pointer py-1.5"
+                >
                   {item.label}
                 </Link>
               ))}
-              <Link href="/#iconiques" className="py-1.5">
+              <Link href="/#iconiques" className="cursor-pointer py-1.5">
                 Recherche
               </Link>
-              <Link href="/#footer" className="py-1.5">
+              <Link href="/#footer" className="cursor-pointer py-1.5">
                 Le Club Laduree
               </Link>
             </div>
           </details>
           <Logo dark={dark} />
-          <Link href="/#footer" className="text-[20px] tracking-[-0.2px]">
+          <Link
+            href="/#footer"
+            className="cursor-pointer text-[20px] tracking-[-0.2px]"
+          >
             Panier
           </Link>
         </nav>
@@ -99,11 +109,7 @@ export function SiteHeader() {
               aria-expanded={shopOpen}
               aria-controls="shop-menu"
               onClick={() => setShopOpen((open) => !open)}
-              className={
-                shopOpen
-                  ? "flex h-full items-center border-b-2 border-muted text-[20px] leading-6 tracking-[-0.2px]"
-                  : navLinkClass
-              }
+              className={shopOpen ? shopActiveClass : navLinkClass}
             >
               E- Shop
             </button>
@@ -112,9 +118,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setShopOpen(false)}
-                className={
-                  shopOpen ? `flex h-full items-center ${leftLinkClass}` : navLinkClass
-                }
+                className={shopOpen ? leftLinkClass : navLinkClass}
               >
                 {item.label}
               </Link>
@@ -122,32 +126,22 @@ export function SiteHeader() {
             <Link
               href="/#iconiques"
               onClick={() => setShopOpen(false)}
-              className={`flex items-center gap-2 ${
-                shopOpen ? `h-full ${leftLinkClass}` : navLinkClass
-              }`}
+              className={`gap-2 ${shopOpen ? leftLinkClass : navLinkClass}`}
             >
               <Icon src="/icons/search.svg" alt="" size={18} current />
               Recherche
             </Link>
           </div>
           <Logo dark={dark} />
-          <div className="flex items-center justify-end gap-5 justify-self-end">
+          <div className="flex h-full items-center justify-end gap-5 justify-self-end">
             <Link href="/#footer" className={navLinkClass}>
               Le Club Laduree
             </Link>
-            <span className="text-[20px] leading-6 tracking-[-0.2px]">FR/FR</span>
-            <Link
-              href="/#footer"
-              className="flex items-center justify-center"
-              aria-label="Compte"
-            >
+            <span className={navLinkClass}>FR/FR</span>
+            <Link href="/#footer" className={navLinkClass} aria-label="Compte">
               <Icon src="/icons/user.svg" alt="" size={20} current />
             </Link>
-            <Link
-              href="/#footer"
-              className="flex items-center justify-center"
-              aria-label="Panier"
-            >
+            <Link href="/#footer" className={navLinkClass} aria-label="Panier">
               <Icon src="/icons/bag.svg" alt="" size={28} current />
             </Link>
           </div>
