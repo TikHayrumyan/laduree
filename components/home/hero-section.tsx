@@ -22,7 +22,7 @@ export function HeroSection() {
           </span>
           <span className="italic leading-normal">depuis 1862</span>
         </h1>
-        <CtaButton href="/#iconiques" className="w-76.25 shrink-0">
+        <CtaButton href="/#iconiques" className="w-76.25 shrink-none border-none">
           Découvrir nos produits
         </CtaButton>
       </div>
