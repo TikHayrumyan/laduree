@@ -54,12 +54,6 @@ export function SiteHeader() {
               : "border-white bg-transparent"
         }`}
       >
-        {shopOpen ? (
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 z-0 bg-cream/20 backdrop-blur-xs"
-          />
-        ) : null}
         <nav
           aria-label="Navigation principale"
           className={`relative z-10 flex h-full items-center justify-between transition-colors duration-700 lg:hidden ${
