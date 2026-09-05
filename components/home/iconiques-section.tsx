@@ -1,6 +1,6 @@
 import { ProductCard } from "@/components/home/product-card";
 import { TextLink } from "@/components/ui/text-link";
-import { categories, desktopProducts, mobileProducts } from "@/lib/content";
+import { categories, products } from "@/lib/content";
 
 function CategoryNav() {
   return (
@@ -8,10 +8,7 @@ function CategoryNav() {
       {categories.map((category, index) => (
         <div key={category} className="flex shrink-0 items-center gap-4">
           {index > 0 ? (
-            <span
-              className="size-1 rounded-full bg-muted"
-              aria-hidden
-            />
+            <span className="size-1 rounded-full bg-muted" aria-hidden />
           ) : null}
           <span
             className={`whitespace-nowrap text-center text-[20px] leading-6 tracking-[-0.2px] lg:text-[28px] lg:leading-8.5 lg:tracking-[-0.28px] ${
@@ -27,8 +24,6 @@ function CategoryNav() {
 }
 
 export function IconiquesSection() {
-  const [first, second, wide, fourth, fifth] = mobileProducts;
-
   return (
     <section
       id="iconiques"
@@ -41,40 +36,18 @@ export function IconiquesSection() {
         <CategoryNav />
       </div>
 
-      <div className="flex w-full flex-col items-center gap-6 lg:hidden">
-        <div className="flex w-full gap-5">
-          <ProductCard product={first} />
-          <ProductCard product={second} />
-        </div>
-        <ProductCard product={wide} layout="full" />
-        <div className="flex w-full gap-5">
-          <ProductCard product={fourth} />
-          <ProductCard product={fifth} />
-        </div>
-        <TextLink
-          href="/#iconiques"
-          className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
-        >
-          Tout découvrir
-        </TextLink>
+      <div className="grid w-full grid-cols-2 gap-x-5 gap-y-6 max-lg:grid-flow-dense lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
 
-      <div className="hidden w-full flex-col items-center gap-12 lg:flex">
-        <div className="grid w-full grid-cols-4 gap-x-8 gap-y-12">
-          <ProductCard product={desktopProducts[0]} />
-          <ProductCard product={desktopProducts[1]} layout="wide" />
-          <ProductCard product={desktopProducts[2]} />
-          {desktopProducts.slice(3).map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-        <TextLink
-          href="/#iconiques"
-          className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
-        >
-          Tout découvrir
-        </TextLink>
-      </div>
+      <TextLink
+        href="/#iconiques"
+        className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
+      >
+        Tout découvrir
+      </TextLink>
     </section>
   );
 }

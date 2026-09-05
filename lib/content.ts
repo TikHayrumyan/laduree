@@ -12,9 +12,10 @@ export type Product = {
   name: string;
   price: string;
   image: string;
+  wide?: boolean;
 };
 
-export const desktopProducts: Product[] = [
+export const products: Product[] = [
   {
     id: "mimosa-18",
     name: 'Coffret de 18 macarons "Mimosa"',
@@ -26,6 +27,7 @@ export const desktopProducts: Product[] = [
     name: "Boîte à tiroirs de 32 macarons et 18 Eugénie",
     price: "60 EUR",
     image: "/images/product-2.png",
+    wide: true,
   },
   {
     id: "napoleon-42",
@@ -57,14 +59,6 @@ export const desktopProducts: Product[] = [
     price: "102 EUR",
     image: "/images/product-3.png",
   },
-];
-
-export const mobileProducts: Product[] = [
-  desktopProducts[0],
-  desktopProducts[2],
-  desktopProducts[1],
-  desktopProducts[3],
-  desktopProducts[5],
 ];
 
 export const footerColumns = [

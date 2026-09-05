@@ -4,39 +4,28 @@ import type { Product } from "@/lib/content";
 
 type ProductCardProps = {
   product: Product;
-  layout?: "standard" | "wide" | "full";
 };
 
-export function ProductCard({
-  product,
-  layout = "standard",
-}: ProductCardProps) {
-  const widthClass =
-    layout === "wide"
-      ? "col-span-2 min-w-0"
-      : layout === "full"
-        ? "w-full"
-        : "min-w-0 flex-1";
-
+export function ProductCard({ product }: ProductCardProps) {
   return (
-    <article className={`group relative flex flex-col items-center gap-4 ${widthClass}`}>
-      <div
-        className={`relative w-full ${layout === "full" ? "h-45.25" : "h-45.25 lg:h-95.75"}`}
-      >
+    <article
+      className={`group relative flex min-w-0 flex-col items-center gap-4 ${
+        product.wide ? "col-span-2" : ""
+      }`}
+    >
+      <div className="relative h-45.25 w-full lg:h-95.75">
         <Image
           src={product.image}
           alt={product.name}
           fill
           className="object-cover"
           sizes={
-            layout === "wide"
-              ? "(min-width: 1024px) calc((100vw - 196px) / 2 + 32px), calc(100vw - 40px)"
-              : layout === "full"
-                ? "calc(100vw - 40px)"
-                : "(max-width: 1023px) calc((100vw - 60px) / 2), calc((100vw - 196px) / 4)"
+            product.wide
+              ? "(max-width: 1023px) calc(100vw - 40px), calc((100vw - 196px) / 2 + 32px)"
+              : "(max-width: 1023px) calc((100vw - 60px) / 2), calc((100vw - 196px) / 4)"
           }
         />
-        <div className="absolute cursor-pointer inset-x-1 bottom-2.5 hidden items-center justify-between bg-white px-3 py-2 group-hover:flex lg:inset-x-[3.5px] lg:bottom-3 lg:px-6 lg:py-3">
+        <div className="absolute inset-x-1 bottom-2.5 hidden cursor-pointer items-center justify-between bg-white px-3 py-2 group-hover:flex lg:inset-x-[3.5px] lg:bottom-3 lg:px-6 lg:py-3">
           <span className="whitespace-nowrap text-[12px] leading-3.5 tracking-[-0.12px] text-black lg:text-[20px] lg:leading-6 lg:tracking-[-0.2px]">
             Ajouter au panier
           </span>
