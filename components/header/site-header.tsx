@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ShopMenu } from "@/components/header/shop-menu";
 import { Icon } from "@/components/ui/icon";
+import { useNavLine } from "@/hooks/use-nav-line";
 import { useOffscreen } from "@/hooks/use-offscreen";
 
 const desktopLeft = [
@@ -12,13 +13,10 @@ const desktopLeft = [
 ] as const;
 
 const navLinkClass =
-  "flex h-full cursor-pointer items-center border-b-1 border-transparent text-[20px] leading-6 tracking-[-0.2px] hover:border-current";
+  "flex h-full cursor-pointer items-center text-[20px] leading-6 tracking-[-0.2px]";
 
 const mutedLinkClass =
-  "flex h-full cursor-pointer items-center border-b-1 border-transparent text-[20px] leading-6 tracking-[-0.2px] text-muted hover:border-current";
-
-const shopActiveClass =
-  "flex h-full cursor-pointer items-center border-b-1 border-current text-[20px] leading-6 tracking-[-0.2px]";
+  "flex h-full cursor-pointer items-center text-[20px] leading-6 tracking-[-0.2px] text-muted";
 
 function Logo({ dark }: { dark: boolean }) {
   return (
@@ -38,6 +36,7 @@ function Logo({ dark }: { dark: boolean }) {
 export function SiteHeader() {
   const [shopOpen, setShopOpen] = useState(false);
   const [sentinelRef, inverted] = useOffscreen();
+  const { headerRef, pinnedRef, bind } = useNavLine(shopOpen);
   const dark = inverted || shopOpen;
   const leftLinkClass = shopOpen ? mutedLinkClass : navLinkClass;
 
@@ -49,14 +48,27 @@ export function SiteHeader() {
         className="pointer-events-none absolute top-0 h-px w-px"
       />
       <header
+        ref={headerRef}
         className={`pointer-events-auto fixed inset-x-0 top-0 z-50 h-nav border-b-[0.5px] px-5 lg:px-12.5 ${
           inverted && !shopOpen
             ? "border-nav-line bg-cream"
             : shopOpen
               ? "border-nav-line bg-transparent"
-              : "border-white bg-transparent"
+              : "border-white/20 bg-transparent"
         }`}
       >
+        <div
+          aria-hidden
+          className={`nav-line-left max-lg:hidden ${dark ? "bg-ink" : "bg-white"} ${
+            shopOpen ? "nav-line-open" : ""
+          }`}
+        />
+        <div
+          aria-hidden
+          className={`nav-line-right max-lg:hidden ${dark ? "bg-ink" : "bg-white"} ${
+            shopOpen ? "nav-line-open" : ""
+          }`}
+        />
         <nav
           aria-label="Navigation principale"
           className={`relative z-10 flex h-full items-center justify-between transition-colors duration-700 lg:hidden ${
@@ -105,11 +117,13 @@ export function SiteHeader() {
         >
           <div className="flex h-full items-center gap-5 justify-self-start">
             <button
+              ref={pinnedRef}
               type="button"
               aria-expanded={shopOpen}
               aria-controls="shop-menu"
               onClick={() => setShopOpen((open) => !open)}
-              className={shopOpen ? shopActiveClass : navLinkClass}
+              className={navLinkClass}
+              {...bind("left")}
             >
               E- Shop
             </button>
@@ -118,7 +132,8 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setShopOpen(false)}
-                className={shopOpen ? leftLinkClass : navLinkClass}
+                className={leftLinkClass}
+                {...bind("left")}
               >
                 {item.label}
               </Link>
@@ -126,7 +141,8 @@ export function SiteHeader() {
             <Link
               href="/#iconiques"
               onClick={() => setShopOpen(false)}
-              className={`gap-2 ${shopOpen ? leftLinkClass : navLinkClass}`}
+              className={`gap-2 ${leftLinkClass}`}
+              {...bind("left")}
             >
               <Icon src="/icons/search.svg" alt="" size={18} current />
               Recherche
@@ -134,14 +150,26 @@ export function SiteHeader() {
           </div>
           <Logo dark={dark} />
           <div className="flex h-full items-center justify-end gap-5 justify-self-end">
-            <Link href="/#footer" className={navLinkClass}>
+            <Link href="/#footer" className={navLinkClass} {...bind("right")}>
               Le Club Laduree
             </Link>
-            <span className={navLinkClass}>FR/FR</span>
-            <Link href="/#footer" className={navLinkClass} aria-label="Compte">
+            <span className={navLinkClass} {...bind("right")}>
+              FR/FR
+            </span>
+            <Link
+              href="/#footer"
+              className={navLinkClass}
+              aria-label="Compte"
+              {...bind("right")}
+            >
               <Icon src="/icons/user.svg" alt="" size={20} current />
             </Link>
-            <Link href="/#footer" className={navLinkClass} aria-label="Panier">
+            <Link
+              href="/#footer"
+              className={navLinkClass}
+              aria-label="Panier"
+              {...bind("right")}
+            >
               <Icon src="/icons/bag.svg" alt="" size={28} current />
             </Link>
           </div>
