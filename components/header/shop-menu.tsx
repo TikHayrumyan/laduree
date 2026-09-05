@@ -29,14 +29,14 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
         showCloseButton={false}
         id="shop-menu"
         overlayClassName="z-40"
-        className="z-40 w-155 gap-6.75 border-0 bg-white p-0 pt-29.25 shadow-none sm:max-w-155"
+        className="z-40 w-155 gap-6.75 overflow-hidden border-0 bg-white p-0 pt-29.25 shadow-none sm:max-w-155"
       >
         <SheetTitle className="sr-only">E- Shop</SheetTitle>
         <SheetDescription className="sr-only">
           Navigation de la boutique Ladurée
         </SheetDescription>
-        <div className="mx-auto flex w-141 flex-1 flex-col gap-6.75 overflow-y-auto pb-10">
-          <div className="flex w-full">
+        <div className="mx-auto flex min-h-0 w-141 flex-1 flex-col gap-6.75">
+          <div className="flex w-full shrink-0">
             {shopModes.map((item) => {
               const active = item.id === modeId;
 
@@ -56,7 +56,7 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
               );
             })}
           </div>
-          <div className="flex w-full flex-col gap-4">
+          <div className="flex w-full flex-1 flex-col gap-4 overflow-y-auto pb-10 scrollbar-none">
             {mode.categories.map((category) => (
               <article
                 key={category.id}

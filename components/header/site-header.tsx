@@ -37,7 +37,7 @@ export function SiteHeader() {
   return (
     <>
       <div
-        className={`pointer-events-auto fixed inset-x-0 top-0 z-40 h-nav bg-black/10 backdrop-blur-xs transition-opacity duration-500 ease-expo-out ${
+        className={`pointer-events-auto fixed inset-x-0 top-0 z-40 h-nav bg-[#1d1a1733]backdrop-blur-xs transition-opacity duration-500 ease-expo-out ${
           shopOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setShopOpen(false)}
