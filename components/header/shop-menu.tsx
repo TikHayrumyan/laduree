@@ -28,8 +28,8 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
         side="left"
         showCloseButton={false}
         id="shop-menu"
-        overlayClassName="z-40"
-        className="z-40 w-155 gap-6.75 overflow-hidden border-0 bg-white p-0 pt-29.25 shadow-none sm:max-w-155"
+        overlayClassName="z-40 bg-black/20"
+        className="z-40 w-155 gap-6.75 overflow-hidden border-0 bg-cream p-0 pt-29.25 shadow-none sm:max-w-155"
       >
         <SheetTitle className="sr-only">E- Shop</SheetTitle>
         <SheetDescription className="sr-only">

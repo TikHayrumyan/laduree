@@ -17,11 +17,11 @@ const navLinkClass =
 const mutedLinkClass =
   "text-[20px] leading-6 tracking-[-0.2px] text-muted transition-opacity hover:opacity-70";
 
-function Logo() {
+function Logo({ dark }: { dark: boolean }) {
   return (
     <Link
       href="/"
-      className="flex w-36.25 flex-col items-center"
+      className={`flex w-36.25 flex-col items-center ${dark ? "text-ink" : "text-white"}`}
       aria-label="Ladurée Paris, accueil"
     >
       <span className="text-[32px] leading-9.5 lg:-mb-1">LADUREE</span>
@@ -35,7 +35,8 @@ function Logo() {
 export function SiteHeader() {
   const [shopOpen, setShopOpen] = useState(false);
   const [sentinelRef, inverted] = useOffscreen();
-  const solid = inverted || shopOpen;
+  const leftDark = inverted || shopOpen;
+  const restDark = inverted && !shopOpen;
   const leftLinkClass = shopOpen ? mutedLinkClass : navLinkClass;
 
   return (
@@ -45,30 +46,19 @@ export function SiteHeader() {
         aria-hidden
         className="pointer-events-none absolute top-0 h-px w-px"
       />
-      <header className="pointer-events-auto fixed inset-x-0 top-0 z-50 h-nav px-5 lg:px-12.5">
-        <div
-          aria-hidden
-          className={`absolute inset-0 bg-cream transition-opacity duration-300 ease-expo-out ${
-            inverted ? "opacity-100" : "opacity-0"
-          }`}
-        />
-        <div
-          aria-hidden
-          className={`absolute inset-0 bg-black/20 backdrop-blur-xs transition-opacity duration-500 ease-expo-out ${
-            shopOpen ? "opacity-100" : "opacity-0"
-          }`}
-        />
-        <div
-          aria-hidden
-          className={`absolute inset-x-0 bottom-0 h-px transition-colors duration-700 ${
-            solid ? "bg-nav-line" : "bg-white"
-          }`}
-        />
-
+      <header
+        className={`pointer-events-auto fixed inset-x-0 top-0 z-50 h-nav border-b-[0.5px] px-5 lg:px-12.5 ${
+          inverted && !shopOpen
+            ? "border-nav-line bg-cream"
+            : shopOpen
+              ? "border-nav-line bg-transparent"
+              : "border-white bg-transparent"
+        }`}
+      >
         <nav
           aria-label="Navigation principale"
           className={`relative z-10 flex h-full items-center justify-between transition-colors duration-700 lg:hidden ${
-            solid ? "text-ink" : "text-white"
+            inverted ? "text-ink" : "text-white"
           }`}
         >
           <details className="relative">
@@ -92,7 +82,7 @@ export function SiteHeader() {
               </Link>
             </div>
           </details>
-          <Logo />
+          <Logo dark={inverted} />
           <Link href="/#footer" className="text-[20px] tracking-[-0.2px]">
             Panier
           </Link>
@@ -100,11 +90,13 @@ export function SiteHeader() {
 
         <nav
           aria-label="Navigation principale"
-          className={`relative z-10 hidden h-full grid-cols-[1fr_auto_1fr] items-center transition-colors duration-700 lg:grid ${
-            solid ? "text-ink" : "text-white"
-          }`}
+          className="relative z-10 hidden h-full grid-cols-[1fr_auto_1fr] items-center lg:grid"
         >
-          <div className="flex h-full items-center gap-5 justify-self-start">
+          <div
+            className={`flex h-full items-center gap-5 justify-self-start ${
+              leftDark ? "text-ink" : "text-white"
+            }`}
+          >
             <button
               type="button"
               aria-expanded={shopOpen}
@@ -141,8 +133,12 @@ export function SiteHeader() {
               Recherche
             </Link>
           </div>
-          <Logo />
-          <div className="flex items-center justify-end gap-5 justify-self-end">
+          <Logo dark={restDark} />
+          <div
+            className={`flex items-center justify-end gap-5 justify-self-end ${
+              restDark ? "text-ink" : "text-white"
+            }`}
+          >
             <Link href="/#footer" className={navLinkClass}>
               Le Club Laduree
             </Link>
