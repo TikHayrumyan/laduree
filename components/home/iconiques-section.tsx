@@ -14,7 +14,7 @@ function CategoryNav() {
             />
           ) : null}
           <span
-            className={`whitespace-nowrap text-center text-[20px] tracking-[-0.2px] lg:text-[28px] lg:tracking-[-0.28px] ${
+            className={`whitespace-nowrap text-center text-[20px] leading-6 tracking-[-0.2px] lg:text-[28px] lg:leading-8.5 lg:tracking-[-0.28px] ${
               index === 0 ? "text-ink" : "text-muted"
             }`}
           >
@@ -27,15 +27,15 @@ function CategoryNav() {
 }
 
 export function IconiquesSection() {
-  const [first, featured, wide, fourth, fifth] = mobileProducts;
+  const [first, second, wide, fourth, fifth] = mobileProducts;
 
   return (
     <section
       id="iconiques"
-      className="flex w-full flex-col items-center gap-6 px-5 lg:gap-12 lg:px-[50px]"
+      className="flex w-full flex-col items-center gap-6 px-5 lg:gap-12 lg:px-12.5"
     >
       <div className="flex w-full flex-col items-center gap-5 lg:w-auto lg:gap-6">
-        <h2 className="text-[36px] tracking-[-0.36px] lg:text-[60px] lg:tracking-[-0.6px]">
+        <h2 className="text-[36px] leading-10.75 tracking-[-0.36px] lg:text-[60px] lg:leading-18 lg:tracking-[-0.6px]">
           LES ICONIQUES
         </h2>
         <CategoryNav />
@@ -44,7 +44,7 @@ export function IconiquesSection() {
       <div className="flex w-full flex-col items-center gap-6 lg:hidden">
         <div className="flex w-full gap-5">
           <ProductCard product={first} />
-          <ProductCard product={featured} />
+          <ProductCard product={second} />
         </div>
         <ProductCard product={wide} layout="full" />
         <div className="flex w-full gap-5">
@@ -53,26 +53,24 @@ export function IconiquesSection() {
         </div>
         <TextLink
           href="/#iconiques"
-          className="text-[20px] tracking-[-0.2px] text-ink"
+          className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
         >
           Tout découvrir
         </TextLink>
       </div>
 
       <div className="hidden w-full flex-col items-center gap-12 lg:flex">
-        <div className="flex w-full items-center gap-8">
+        <div className="grid w-full grid-cols-4 gap-x-8 gap-y-12">
           <ProductCard product={desktopProducts[0]} />
           <ProductCard product={desktopProducts[1]} layout="wide" />
           <ProductCard product={desktopProducts[2]} />
-        </div>
-        <div className="flex w-full items-center gap-8">
           {desktopProducts.slice(3).map((product) => (
-            <ProductCard key={product.id} product={product} layout="wide" />
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
         <TextLink
           href="/#iconiques"
-          className="text-[20px] tracking-[-0.2px] text-ink"
+          className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
         >
           Tout découvrir
         </TextLink>

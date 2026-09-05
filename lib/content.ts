@@ -12,7 +12,6 @@ export type Product = {
   name: string;
   price: string;
   image: string;
-  featured?: boolean;
 };
 
 export const desktopProducts: Product[] = [
@@ -33,7 +32,6 @@ export const desktopProducts: Product[] = [
     name: 'Coffret de 42 macarons "Napoléon" - or',
     price: "123 EUR",
     image: "/images/product-3.png",
-    featured: true,
   },
   {
     id: "intemporel-bleu",
@@ -63,7 +61,7 @@ export const desktopProducts: Product[] = [
 
 export const mobileProducts: Product[] = [
   desktopProducts[0],
-  { ...desktopProducts[2], featured: true },
+  desktopProducts[2],
   desktopProducts[1],
   desktopProducts[3],
   desktopProducts[5],
