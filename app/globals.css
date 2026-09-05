@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @theme inline {
   --color-cream: #fefbf4;
@@ -11,6 +12,7 @@
   --color-blush: #fadbe1;
   --color-line: #d6d2cc;
   --color-footer-line: #bebdbb;
+  --color-nav-line: #b9b8b7;
   --font-serif: "adobe-garamond-pro", ui-serif, Georgia, serif;
 }
 

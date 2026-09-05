@@ -1,14 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import { ShopMenu } from "@/components/header/shop-menu";
 import { Icon } from "@/components/ui/icon";
 
 const desktopLeft = [
-  { href: "/#iconiques", label: "E- Shop" },
   { href: "/#entreprises", label: "Entreprises" },
   { href: "/#maison", label: "La Maison" },
 ] as const;
 
 const navLinkClass =
-  "text-[20px] leading-[24px] tracking-[-0.2px] text-white transition-opacity hover:opacity-70";
+  "text-[20px] leading-6 tracking-[-0.2px] text-white transition-opacity hover:opacity-70";
+
+const shopNavClass =
+  "text-[20px] leading-6 tracking-[-0.2px] text-ink transition-opacity hover:opacity-70";
 
 function Logo() {
   return (
@@ -26,67 +32,120 @@ function Logo() {
 }
 
 export function SiteHeader() {
+  const [shopOpen, setShopOpen] = useState(false);
+
   return (
-    <header className="absolute inset-x-0 top-0 z-20 border-b-[0.5px] border-white px-5 py-4 lg:top-0 lg:px-12.5">
-      <nav
-        aria-label="Navigation principale"
-        className="flex items-center justify-between lg:hidden "
+    <>
+      <header
+        className={`absolute inset-x-0 top-0 px-5 py-4 lg:px-12.5 ${
+          shopOpen
+            ? "z-50 border-b-[0.5px] border-nav-line backdrop-blur-md"
+            : "z-20 border-b-[0.5px] border-white"
+        }`}
       >
-        <details className="relative">
-          <summary className="cursor-pointer text-[20px] tracking-[-0.2px] text-white">
-            Menu
-          </summary>
-          <div className="absolute left-0 top-full z-30 mt-3 flex w-52 flex-col bg-cream px-4 py-3 text-[16px] text-ink shadow-sm">
+        <nav
+          aria-label="Navigation principale"
+          className="flex items-center justify-between lg:hidden"
+        >
+          <details className="relative">
+            <summary className="cursor-pointer text-[20px] tracking-[-0.2px] text-white">
+              Menu
+            </summary>
+            <div className="absolute left-0 top-full z-30 mt-3 flex w-52 flex-col bg-cream px-4 py-3 text-[16px] text-ink shadow-sm">
+              <Link href="/#iconiques" className="py-1.5">
+                E- Shop
+              </Link>
+              {desktopLeft.map((item) => (
+                <Link key={item.href} href={item.href} className="py-1.5">
+                  {item.label}
+                </Link>
+              ))}
+              <Link href="/#iconiques" className="py-1.5">
+                Recherche
+              </Link>
+              <Link href="/#footer" className="py-1.5">
+                Le Club Laduree
+              </Link>
+            </div>
+          </details>
+          <Logo />
+          <Link
+            href="/#footer"
+            className="text-[20px] tracking-[-0.2px] text-white"
+          >
+            Panier
+          </Link>
+        </nav>
+
+        <nav
+          aria-label="Navigation principale"
+          className="hidden grid-cols-[1fr_auto_1fr] items-center lg:grid"
+        >
+          <div className="flex items-center gap-5 justify-self-start">
+            <button
+              type="button"
+              aria-expanded={shopOpen}
+              aria-controls="shop-menu"
+              onClick={() => setShopOpen((open) => !open)}
+              className={
+                shopOpen
+                  ? "border-b-2 border-muted text-[20px] leading-6 tracking-[-0.2px] text-ink"
+                  : navLinkClass
+              }
+            >
+              E- Shop
+            </button>
             {desktopLeft.map((item) => (
-              <Link key={item.href} href={item.href} className="py-1.5">
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setShopOpen(false)}
+                className={shopOpen ? shopNavClass : navLinkClass}
+              >
                 {item.label}
               </Link>
             ))}
-            <Link href="/#iconiques" className="py-1.5">
+            <Link
+              href="/#iconiques"
+              onClick={() => setShopOpen(false)}
+              className={`flex items-center gap-2 ${
+                shopOpen ? shopNavClass : navLinkClass
+              }`}
+            >
+              <Icon
+                src={shopOpen ? "/icons/search-dark.svg" : "/icons/search.svg"}
+                alt=""
+                size={18}
+              />
               Recherche
             </Link>
-            <Link href="/#footer" className="py-1.5">
+          </div>
+          <Logo />
+          <div className="flex items-center justify-end gap-5 justify-self-end">
+            <Link href="/#footer" className={navLinkClass}>
               Le Club Laduree
             </Link>
-          </div>
-        </details>
-        <Logo />
-        <Link href="/#footer" className="text-[20px] tracking-[-0.2px] text-white">
-          Panier
-        </Link>
-      </nav>
-
-      <nav
-        aria-label="Navigation principale"
-        className="hidden grid-cols-[1fr_auto_1fr] items-center lg:grid"
-      >
-        <div className="flex items-center gap-5 justify-self-start">
-          {desktopLeft.map((item) => (
-            <Link key={item.href} href={item.href} className={navLinkClass}>
-              {item.label}
+            <span className="text-[20px] leading-6 tracking-[-0.2px] text-white">
+              FR/FR
+            </span>
+            <Link
+              href="/#footer"
+              className="flex items-center justify-center"
+              aria-label="Compte"
+            >
+              <Icon src="/icons/user.svg" alt="" size={20} />
             </Link>
-          ))}
-          <Link href="/#iconiques" className={`flex items-center gap-2 ${navLinkClass}`}>
-            <Icon src="/icons/search.svg" alt="" size={18} />
-            Recherche
-          </Link>
-        </div>
-        <Logo />
-        <div className="flex items-center justify-end gap-5 justify-self-end">
-          <Link href="/#footer" className={navLinkClass}>
-            Le Club Laduree
-          </Link>
-          <span className="text-[20px] leading-6 tracking-[-0.2px] text-white">
-            FR/FR
-          </span>
-          <Link href="/#footer" className="flex items-center justify-center" aria-label="Compte">
-            <Icon src="/icons/user.svg" alt="" size={20} />
-          </Link>
-          <Link href="/#footer" className="flex items-center justify-center" aria-label="Panier">
-            <Icon src="/icons/bag.svg" alt="" size={28} />
-          </Link>
-        </div>
-      </nav>
-    </header>
+            <Link
+              href="/#footer"
+              className="flex items-center justify-center"
+              aria-label="Panier"
+            >
+              <Icon src="/icons/bag.svg" alt="" size={28} />
+            </Link>
+          </div>
+        </nav>
+      </header>
+      <ShopMenu open={shopOpen} onOpenChange={setShopOpen} />
+    </>
   );
 }

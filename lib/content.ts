@@ -102,6 +102,89 @@ export const footerColumns = [
   },
 ] as const;
 
+export type ShopCategory = {
+  id: string;
+  title: string;
+  links: readonly string[];
+  image: string;
+};
+
+export type ShopMode = {
+  id: "delivery" | "boutique";
+  label: string;
+  categories: readonly ShopCategory[];
+};
+
+export const shopModes: readonly ShopMode[] = [
+  {
+    id: "delivery",
+    label: "Livraison à domicile",
+    categories: [
+      {
+        id: "macarons",
+        title: "Macarons",
+        links: [
+          "Coffrets de Macarons",
+          "Composeur",
+          "Parfums de Macarons",
+        ],
+        image: "/images/nav/macarons.png",
+      },
+      {
+        id: "eugenie",
+        title: "Eugénie",
+        links: [
+          "Coffrets d’Eugénie",
+          "Composeur Eugénie",
+          "Parfums d’Eugénie",
+        ],
+        image: "/images/nav/eugenie.png",
+      },
+      {
+        id: "chocolat",
+        title: "Chocolat",
+        links: ["Perles", "Coffrets de Chocolat", "Confiserie"],
+        image: "/images/nav/chocolat.png",
+      },
+      {
+        id: "tea-time",
+        title: "Tea Time",
+        links: ["Thé", "Confitures", "Biscuits"],
+        image: "/images/nav/tea-time.png",
+      },
+      {
+        id: "patisseries",
+        title: "Pâtisseries",
+        links: ["Fondants", "Pâtisseries par coursier", "Bûche Noël"],
+        image: "/images/nav/patisseries.png",
+      },
+      {
+        id: "cadeaux",
+        title: "Cadeaux",
+        links: [
+          "Assortiment prêts à offrir",
+          "Composeur Coffret cadeau",
+          "L’abonnement Gourmand",
+          "Carte Cadeau",
+        ],
+        image: "/images/nav/cadeaux.png",
+      },
+    ],
+  },
+  {
+    id: "boutique",
+    label: "Pâtisseries en boutique",
+    categories: [
+      {
+        id: "patisseries-boutique",
+        title: "Pâtisseries",
+        links: ["Fondants", "Pâtisseries par coursier", "Bûche Noël"],
+        image: "/images/nav/patisseries-boutique.png",
+      },
+    ],
+  },
+];
+
 export const socialLinks = [
   {
     name: "Instagram",
