@@ -35,8 +35,7 @@ function Logo({ dark }: { dark: boolean }) {
 export function SiteHeader() {
   const [shopOpen, setShopOpen] = useState(false);
   const [sentinelRef, inverted] = useOffscreen();
-  const leftDark = inverted || shopOpen;
-  const restDark = inverted && !shopOpen;
+  const dark = inverted || shopOpen;
   const leftLinkClass = shopOpen ? mutedLinkClass : navLinkClass;
 
   return (
@@ -55,10 +54,16 @@ export function SiteHeader() {
               : "border-white bg-transparent"
         }`}
       >
+        {shopOpen ? (
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 z-0 bg-cream/20 backdrop-blur-xs"
+          />
+        ) : null}
         <nav
           aria-label="Navigation principale"
           className={`relative z-10 flex h-full items-center justify-between transition-colors duration-700 lg:hidden ${
-            inverted ? "text-ink" : "text-white"
+            dark ? "text-ink" : "text-white"
           }`}
         >
           <details className="relative">
@@ -82,7 +87,7 @@ export function SiteHeader() {
               </Link>
             </div>
           </details>
-          <Logo dark={inverted} />
+          <Logo dark={dark} />
           <Link href="/#footer" className="text-[20px] tracking-[-0.2px]">
             Panier
           </Link>
@@ -90,13 +95,11 @@ export function SiteHeader() {
 
         <nav
           aria-label="Navigation principale"
-          className="relative z-10 hidden h-full grid-cols-[1fr_auto_1fr] items-center lg:grid"
+          className={`relative z-10 hidden h-full grid-cols-[1fr_auto_1fr] items-center transition-colors duration-700 lg:grid ${
+            dark ? "text-ink" : "text-white"
+          }`}
         >
-          <div
-            className={`flex h-full items-center gap-5 justify-self-start ${
-              leftDark ? "text-ink" : "text-white"
-            }`}
-          >
+          <div className="flex h-full items-center gap-5 justify-self-start">
             <button
               type="button"
               aria-expanded={shopOpen}
@@ -133,12 +136,8 @@ export function SiteHeader() {
               Recherche
             </Link>
           </div>
-          <Logo dark={restDark} />
-          <div
-            className={`flex items-center justify-end gap-5 justify-self-end ${
-              restDark ? "text-ink" : "text-white"
-            }`}
-          >
+          <Logo dark={dark} />
+          <div className="flex items-center justify-end gap-5 justify-self-end">
             <Link href="/#footer" className={navLinkClass}>
               Le Club Laduree
             </Link>
