@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { preconnect } from "react-dom";
+import { SiteFooter } from "@/components/footer/site-footer";
 import { SiteHeader } from "@/components/header/site-header";
 import "./adobe-garamond.css";
 import "./globals.css";
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="relative min-h-full bg-cream font-serif text-ink">
         <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

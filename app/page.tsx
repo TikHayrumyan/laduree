@@ -8,7 +8,6 @@ import { PersonalizedGiftsSection } from "@/components/home/personalized-gifts-s
 import { StoresSection } from "@/components/home/stores-section";
 import { TraditionSection } from "@/components/home/tradition-section";
 import { ValentineSection } from "@/components/home/valentine-section";
-import { SiteFooter } from "@/components/footer/site-footer";
 
 export default function Home() {
   return (
@@ -30,7 +29,6 @@ export default function Home() {
         <TraditionSection />
         <StoresSection />
       </main>
-      <SiteFooter />
     </div>
   );
 }
