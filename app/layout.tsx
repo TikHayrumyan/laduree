@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import { EB_Garamond } from "next/font/google";
+import { preconnect } from "react-dom";
 import { SiteHeader } from "@/components/header/site-header";
+import "./adobe-garamond.css";
 import "./globals.css";
-
-const garamond = EB_Garamond({
-  variable: "--font-garamond",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  weight: ["400", "500"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Ladurée Paris | L'art de la gourmandise depuis 1862",
@@ -18,8 +11,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  preconnect("https://use.typekit.net");
+  preconnect("https://p.typekit.net", { crossOrigin: "anonymous" });
+
   return (
-    <html lang="fr" className={`${garamond.variable} h-full antialiased`}>
+    <html lang="fr" className="h-full antialiased">
       <body className="relative min-h-full bg-cream font-serif text-ink">
         <SiteHeader />
         {children}
