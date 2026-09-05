@@ -3,7 +3,7 @@ import { CtaButton } from "@/components/ui/cta-button";
 
 export function HeroSection() {
   return (
-    <section className="relative h-153.5 w-full overflow-hidden lg:h-215">
+    <section className="relative flex h-153.5 w-full items-center justify-center overflow-hidden lg:h-215">
       <Image
         src="/images/hero.png"
         alt="Macarons roses Ladurée et framboises fraîches"
@@ -13,7 +13,7 @@ export function HeroSection() {
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-black/15" aria-hidden />
-      <div className="absolute left-1/2 top-1/2 flex w-full max-w-97.5 -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-9 px-5 lg:w-148.25 lg:max-w-148.25 lg:px-0">
+      <div className="relative z-10 flex w-full max-w-97.5 flex-col items-center gap-9 px-5 lg:w-148.25 lg:max-w-148.25 lg:px-0">
         <h1 className="flex w-full flex-col items-center text-center text-[48px] tracking-[-0.48px] text-white lg:text-[80px] lg:tracking-[-0.8px]">
           <span className="-mb-2 leading-13 not-italic lg:-mb-2.5 lg:leading-19">
             LART DE LA
