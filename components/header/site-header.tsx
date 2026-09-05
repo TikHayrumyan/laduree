@@ -24,7 +24,7 @@ function Logo() {
 
 export function SiteHeader() {
   return (
-    <header className="absolute inset-x-0 top-0 z-20 border-b-[0.5px] border-white px-5 py-4 lg:top-10 lg:px-12.5">
+    <header className="absolute inset-x-0 top-0 z-20 border-b-[0.5px] border-white px-5 py-4 lg:top-0 lg:px-12.5">
       <nav
         aria-label="Navigation principale"
         className="flex items-center justify-between lg:hidden"
