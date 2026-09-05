@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import {
   Sheet,
@@ -9,6 +8,7 @@ import {
   SheetDescription,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { ShopLink } from "@/components/header/shop-link";
 import { shopModes, type ShopMode } from "@/lib/content";
 
 type ShopMenuProps = {
@@ -68,14 +68,14 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
                   </h2>
                   <div className="flex flex-col gap-1 text-[18px] leading-5.5 tracking-[-0.18px] text-muted">
                     {category.links.map((link) => (
-                      <Link
+                      <ShopLink
                         key={link}
                         href="/#iconiques"
                         onClick={close}
-                        className="cursor-pointer hover:text-ink"
+                        className="text-muted hover:text-ink"
                       >
                         {link}
-                      </Link>
+                      </ShopLink>
                     ))}
                   </div>
                 </div>
