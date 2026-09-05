@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { SiteHeader } from "@/components/header/site-header";
 import { CtaButton } from "@/components/ui/cta-button";
 
 export function HeroSection() {
@@ -14,7 +13,6 @@ export function HeroSection() {
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-black/15" aria-hidden />
-      <SiteHeader />
       <div className="absolute left-1/2 top-1/2 flex w-full max-w-97.5 -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-9 px-5 lg:w-148.25 lg:max-w-148.25 lg:px-0">
         <h1 className="flex w-full flex-col items-center text-center text-[48px] tracking-[-0.48px] text-white lg:text-[80px] lg:tracking-[-0.8px]">
           <span className="-mb-2 leading-13 not-italic lg:-mb-2.5 lg:leading-19">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EB_Garamond } from "next/font/google";
+import { SiteHeader } from "@/components/header/site-header";
 import "./globals.css";
 
 const garamond = EB_Garamond({
@@ -19,7 +20,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={`${garamond.variable} h-full antialiased`}>
-      <body className="min-h-full bg-cream font-serif text-ink">{children}</body>
+      <body className="relative min-h-full bg-cream font-serif text-ink">
+        <SiteHeader />
+        {children}
+      </body>
     </html>
   );
 }
