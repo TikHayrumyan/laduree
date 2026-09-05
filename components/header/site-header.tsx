@@ -8,7 +8,7 @@ const desktopLeft = [
 ] as const;
 
 const navLinkClass =
-  "text-[20px] tracking-[-0.2px] text-white transition-opacity hover:opacity-70";
+  "text-[20px] leading-[24px] tracking-[-0.2px] text-white transition-opacity hover:opacity-70";
 
 function Logo() {
   return (
@@ -17,8 +17,8 @@ function Logo() {
       className="flex w-36.25 flex-col items-center text-white"
       aria-label="Ladurée Paris, accueil"
     >
-      <span className="text-[32px] leading-none">LADUREE</span>
-      <span className="hidden text-center text-[20px] italic lg:block">
+      <span className="text-[32px] leading-9.5 lg:-mb-1">LADUREE</span>
+      <span className="hidden text-center text-[20px] leading-6 italic lg:block">
         Paris
       </span>
     </Link>
@@ -30,7 +30,7 @@ export function SiteHeader() {
     <header className="absolute inset-x-0 top-0 z-20 border-b-[0.5px] border-white px-5 py-4 lg:top-0 lg:px-12.5">
       <nav
         aria-label="Navigation principale"
-        className="flex items-center justify-between lg:hidden"
+        className="flex items-center justify-between lg:hidden "
       >
         <details className="relative">
           <summary className="cursor-pointer text-[20px] tracking-[-0.2px] text-white">
@@ -76,7 +76,9 @@ export function SiteHeader() {
           <Link href="/#footer" className={navLinkClass}>
             Le Club Laduree
           </Link>
-          <span className="text-[20px] tracking-[-0.2px] text-white">FR/FR</span>
+          <span className="text-[20px] leading-6 tracking-[-0.2px] text-white">
+            FR/FR
+          </span>
           <Link href="/#footer" className="flex items-center justify-center" aria-label="Compte">
             <Icon src="/icons/user.svg" alt="" size={20} />
           </Link>

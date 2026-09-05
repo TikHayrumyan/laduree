@@ -11,7 +11,8 @@
   --color-blush: #fadbe1;
   --color-line: #d6d2cc;
   --color-footer-line: #bebdbb;
-  --font-serif: var(--font-garamond), "EB Garamond", ui-serif, Georgia, serif;
+  --font-serif: "Adobe Garamond Pro", var(--font-garamond), "EB Garamond",
+    ui-serif, Georgia, serif;
 }
 
 html {
