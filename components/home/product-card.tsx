@@ -43,7 +43,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <motion.div
           variants={cartMotion}
           transition={cartTransition}
-          className="absolute inset-x-1 bottom-2.5 flex cursor-pointer items-center justify-between bg-white px-3 py-2 lg:inset-x-[3.5px] lg:bottom-3 lg:px-6 lg:py-3"
+          className="absolute inset-x-1 bottom-2.5 flex cursor-pointer items-center justify-between bg-white px-3 py-2 transition-colors duration-300 hover:bg-sage lg:inset-x-[3.5px] lg:bottom-3 lg:px-6 lg:py-3"
         >
           <span className="whitespace-nowrap text-[12px] leading-3.5 tracking-[-0.12px] text-black lg:text-[20px] lg:leading-6 lg:tracking-[-0.2px]">
             Ajouter au panier
