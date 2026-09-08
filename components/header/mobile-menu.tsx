@@ -51,7 +51,7 @@ function MenuHeader({
       <Link
         href="/"
         onClick={onClose}
-        className="w-36.25 text-center text-[32px] leading-9.5"
+        className="w-logo text-center text-[32px] leading-9.5"
         aria-label="Ladurée Paris, accueil"
       >
         LADUREE

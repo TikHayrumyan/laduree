@@ -16,6 +16,7 @@
   --color-nav-line: #b9b8b7;
   --font-serif: "adobe-garamond-pro", ui-serif, Georgia, serif;
   --spacing-nav: 5.625rem;
+  --spacing-logo: 9.0625rem;
   --ease-expo-out: cubic-bezier(0.19, 1, 0.22, 1);
 }
 

@@ -23,7 +23,7 @@ function Logo({ dark }: { dark: boolean }) {
   return (
     <Link
       href="/"
-      className={`flex w-36.25 cursor-pointer flex-col items-center transition-colors duration-700 ${dark ? "text-ink" : "text-white"}`}
+      className={`flex w-logo cursor-pointer flex-col items-center transition-colors duration-700 ${dark ? "text-ink" : "text-white"}`}
       aria-label="Ladurée Paris, accueil"
     >
       <span className="text-[32px] leading-9.5 lg:-mb-1">LADUREE</span>
