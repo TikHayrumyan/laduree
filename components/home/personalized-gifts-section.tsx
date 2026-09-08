@@ -1,5 +1,51 @@
+"use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import { TextLink } from "@/components/ui/text-link";
+
+function GiftImage() {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: frameRef,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+  const smoothY = useSpring(y, {
+    stiffness: 300,
+    damping: 28,
+    restDelta: 0.001,
+    skipInitialAnimation: true,
+  });
+
+  return (
+    <div
+      ref={frameRef}
+      className="relative h-85 w-full overflow-hidden lg:order-first lg:h-full lg:flex-1"
+    >
+      <motion.div
+        style={{ y: shouldReduceMotion ? 0 : smoothY }}
+        className="absolute inset-x-0 top-[-5%] h-[124%] w-full"
+      >
+        <Image
+          src="/images/gift-box.png"
+          alt="Coffret ovale Ladurée offert de main à main"
+          fill
+          className="object-cover"
+          sizes="(max-width: 1023px) calc(100vw - 40px), 50vw"
+        />
+      </motion.div>
+    </div>
+  );
+}
 
 export function PersonalizedGiftsSection() {
   return (
@@ -30,15 +76,7 @@ export function PersonalizedGiftsSection() {
           </TextLink>
         </div>
       </div>
-      <div className="relative h-85 w-full lg:order-first lg:h-full lg:flex-1">
-        <Image
-          src="/images/gift-box.png"
-          alt="Coffret ovale Ladurée offert de main à main"
-          fill
-          className="object-cover"
-          sizes="(max-width: 1023px) calc(100vw - 40px), 50vw"
-        />
-      </div>
+      <GiftImage />
     </section>
   );
 }
