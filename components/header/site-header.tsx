@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type Ref } from "react";
 import { MobileMenu } from "@/components/header/mobile-menu";
 import { ShopMenu } from "@/components/header/shop-menu";
 import { Icon } from "@/components/ui/icon";
@@ -34,6 +34,60 @@ function Logo({ dark }: { dark: boolean }) {
   );
 }
 
+function DesktopLeftNav({
+  shopOpen,
+  onShopToggle,
+  onNavigate,
+  leftLinkClass,
+  pinnedRef,
+  bind,
+}: {
+  shopOpen: boolean;
+  onShopToggle: () => void;
+  onNavigate: () => void;
+  leftLinkClass: string;
+  pinnedRef?: Ref<HTMLButtonElement>;
+  bind?: (side: "left" | "right") => Record<string, unknown>;
+}) {
+  const leftBind = bind?.("left") ?? {};
+
+  return (
+    <div className="flex h-full items-center gap-5">
+      <button
+        ref={pinnedRef}
+        type="button"
+        aria-expanded={shopOpen}
+        aria-controls="shop-menu"
+        onClick={onShopToggle}
+        className={navLinkClass}
+        {...leftBind}
+      >
+        E- Shop
+      </button>
+      {desktopLeft.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          onClick={onNavigate}
+          className={leftLinkClass}
+          {...leftBind}
+        >
+          {item.label}
+        </Link>
+      ))}
+      <Link
+        href="/#iconiques"
+        onClick={onNavigate}
+        className={`gap-2 ${leftLinkClass}`}
+        {...leftBind}
+      >
+        <Icon src="/icons/search.svg" alt="" size={18} current />
+        Recherche
+      </Link>
+    </div>
+  );
+}
+
 export function SiteHeader() {
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -51,14 +105,14 @@ export function SiteHeader() {
       />
       <header
         ref={headerRef}
-        className={`pointer-events-auto fixed inset-x-0 top-0 z-50 h-nav border-b-[0.5px] px-5 transition-[border-color] duration-700 lg:px-12.5 ${
-          inverted || shopOpen ? "border-nav-line" : "border-white/20"
-        }`}
+        className={`pointer-events-auto fixed inset-x-0 top-0 h-nav border-b-[0.5px] px-5 transition-[border-color] duration-700 lg:px-12.5 ${
+          shopOpen ? "z-20" : "z-50"
+        } ${inverted || shopOpen ? "border-nav-line" : "border-white/20"}`}
       >
         <div
           aria-hidden
           className={`pointer-events-none absolute inset-0 bg-cream transition-opacity duration-700 ${
-            inverted && !shopOpen ? "opacity-100" : "opacity-0"
+            inverted || shopOpen ? "opacity-100" : "opacity-0"
           }`}
         />
         <div
@@ -98,42 +152,24 @@ export function SiteHeader() {
 
         <nav
           aria-label="Navigation principale"
-          className={`relative z-10 hidden h-full grid-cols-[1fr_auto_1fr] items-center transition-colors duration-700 lg:grid ${
+          className={`relative hidden h-full grid-cols-[1fr_auto_1fr] items-center transition-colors duration-700 lg:grid ${
             dark ? "text-ink" : "text-white"
           }`}
         >
-          <div className="flex h-full items-center gap-5 justify-self-start">
-            <button
-              ref={pinnedRef}
-              type="button"
-              aria-expanded={shopOpen}
-              aria-controls="shop-menu"
-              onClick={() => setShopOpen((open) => !open)}
-              className={navLinkClass}
-              {...bind("left")}
-            >
-              E- Shop
-            </button>
+          <div
+            className="invisible flex h-full items-center gap-5 justify-self-start"
+            aria-hidden
+          >
+            <span className={navLinkClass}>E- Shop</span>
             {desktopLeft.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setShopOpen(false)}
-                className={leftLinkClass}
-                {...bind("left")}
-              >
+              <span key={item.href} className={leftLinkClass}>
                 {item.label}
-              </Link>
+              </span>
             ))}
-            <Link
-              href="/#iconiques"
-              onClick={() => setShopOpen(false)}
-              className={`gap-2 ${leftLinkClass}`}
-              {...bind("left")}
-            >
+            <span className={`gap-2 ${leftLinkClass}`}>
               <Icon src="/icons/search.svg" alt="" size={18} current />
               Recherche
-            </Link>
+            </span>
           </div>
           <Logo dark={dark} />
           <div className="flex h-full items-center justify-end gap-5 justify-self-end">
@@ -162,6 +198,24 @@ export function SiteHeader() {
           </div>
         </nav>
       </header>
+
+      <div
+        className={`pointer-events-none fixed inset-x-0 top-0 z-50 hidden h-nav px-5 lg:flex lg:px-12.5 ${
+          dark ? "text-ink" : "text-white"
+        }`}
+      >
+        <div className="pointer-events-auto">
+          <DesktopLeftNav
+            shopOpen={shopOpen}
+            onShopToggle={() => setShopOpen((open) => !open)}
+            onNavigate={() => setShopOpen(false)}
+            leftLinkClass={leftLinkClass}
+            pinnedRef={pinnedRef}
+            bind={bind}
+          />
+        </div>
+      </div>
+
       <ShopMenu open={shopOpen} onOpenChange={setShopOpen} />
       <MobileMenu open={mobileOpen} onOpenChange={setMobileOpen} />
     </>
