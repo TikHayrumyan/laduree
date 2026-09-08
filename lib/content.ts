@@ -307,6 +307,15 @@ export const entreprisesPerks: readonly EntreprisesPerk[] = [
   },
 ];
 
+export const notFound = {
+  title: "OOPS!",
+  text: "Il semble que ce que vous cherchez n'est plus ici...",
+  ctaLabel: "Retour à l'accueil",
+  href: "/",
+  image: "/images/not-found-org.png",
+  alt: "Macarons Ladurée pastel",
+} as const;
+
 export const socialLinks = [
   {
     name: "Instagram",
