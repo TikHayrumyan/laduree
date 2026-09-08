@@ -278,7 +278,13 @@ export const entreprisesContact: EntreprisesContactContent = {
   hours: "(du lundi au vendredi inclus)",
 };
 
-export const entreprisesPerks = [
+export type EntreprisesPerk = {
+  id: string;
+  title: string;
+  text: string;
+};
+
+export const entreprisesPerks: readonly EntreprisesPerk[] = [
   {
     id: "livraison",
     title: "livraison à domicile",
@@ -292,14 +298,14 @@ export const entreprisesPerks = [
   {
     id: "proteges",
     title: "Produits Protégés",
-    text: "Calages en matière recyclables pour une parfaite préservation  et protection des produits.",
+    text: "Calages en matière recyclables pour une parfaite préservation et protection des produits.",
   },
   {
     id: "service",
     title: "Service Client",
-    text: "Du lundi au vendredi de 9H à 17H par :\n Mail à contact@laduree.com\n Formulaire via le site",
+    text: "Du lundi au vendredi de 9H à 17H par : Mail à contact@laduree.com Formulaire via le site",
   },
-] as const;
+];
 
 export const socialLinks = [
   {

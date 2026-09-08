@@ -1,52 +1,87 @@
 "use client";
 
-import { useState } from "react";
-import { entreprisesPerks } from "@/lib/content";
+import useEmblaCarousel from "embla-carousel-react";
+import { useCallback, useEffect, useState } from "react";
+import { entreprisesPerks, type EntreprisesPerk } from "@/lib/content";
 
-function PerkCard({
-  title,
-  text,
-}: {
-  title: string;
-  text: string;
-}) {
+function PerkCard({ title, text }: EntreprisesPerk) {
   return (
-    <div className="flex w-full flex-col items-center gap-6 text-[18px] leading-5.5 tracking-[-0.18px]">
-      <p className="text-ink uppercase">{title}</p>
-      <p className="w-full whitespace-pre-line text-center text-muted">{text}</p>
+    <div className="flex w-full flex-col items-center gap-6 text-lg leading-5.5 tracking-[-0.18px]">
+      <p className="text-center text-ink uppercase">{title}</p>
+      <p className="w-full text-center text-muted">{text}</p>
+    </div>
+  );
+}
+
+function PerksSlider({ perks }: { perks: readonly EntreprisesPerk[] }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
+  const [selected, setSelected] = useState(0);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelected(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    emblaApi.on("select", onSelect).on("reInit", onSelect);
+    return () => {
+      emblaApi.off("select", onSelect).off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  return (
+    <div className="flex w-full flex-col items-center gap-8 lg:hidden">
+      <div
+        className="w-full overflow-hidden"
+        ref={emblaRef}
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Informations"
+      >
+        <div className="flex">
+          {perks.map((perk) => (
+            <div
+              key={perk.id}
+              className="min-w-0 flex-[0_0_100%]"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={perk.title}
+            >
+              <PerkCard {...perk} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex items-center gap-2">
+        {perks.map((perk, index) => (
+          <button
+            key={perk.id}
+            type="button"
+            aria-label={perk.title}
+            aria-current={index === selected ? "true" : undefined}
+            onClick={() => emblaApi?.scrollTo(index)}
+            className={`h-1 w-1 cursor-pointer rounded-full ${
+              index === selected ? "bg-ink" : "bg-nav-line"
+            }`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
 
 export function EntreprisesPerks() {
-  const [index, setIndex] = useState(0);
-  const current = entreprisesPerks[index];
-
   return (
     <section className="flex w-full flex-col items-center border-t-[0.5px] border-nav-line px-5 py-10 lg:flex-row lg:items-start lg:gap-17.5 lg:px-12.5">
       <div className="hidden w-full lg:flex lg:gap-17.5">
         {entreprisesPerks.map((perk) => (
-          <PerkCard key={perk.id} title={perk.title} text={perk.text} />
+          <div key={perk.id} className="min-w-0 flex-1">
+            <PerkCard {...perk} />
+          </div>
         ))}
       </div>
-      <div className="flex w-full flex-col items-center gap-8 lg:hidden">
-        <PerkCard title={current.title} text={current.text} />
-        <div className="flex items-center gap-2" role="tablist" aria-label="Informations">
-          {entreprisesPerks.map((perk, perkIndex) => (
-            <button
-              key={perk.id}
-              type="button"
-              role="tab"
-              aria-selected={perkIndex === index}
-              aria-label={perk.title}
-              onClick={() => setIndex(perkIndex)}
-              className={`h-1 cursor-pointer rounded-full ${
-                perkIndex === index ? "w-4 bg-ink" : "w-1 bg-nav-line"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
+      <PerksSlider perks={entreprisesPerks} />
     </section>
   );
 }
