@@ -10,7 +10,7 @@ type ProductCardProps = {
 };
 
 const cartMotion = {
-  rest: { y: "110%" },
+  rest: { y: "calc(100% + 14px)" },
   hover: { y: 0 },
 };
 
