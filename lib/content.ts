@@ -206,7 +206,7 @@ export const entreprisesOffers: readonly EntreprisesOffer[] = [
   {
     id: "cadeaux",
     title: "Cadeaux d'entreprise",
-    image: "/images/entreprises/cadeaux.png",
+    image: "/images/entreprises/cadeaux.webp",
     alt: "Coffrets de macarons pastel sur marbre",
     href: "#evenements",
     ctaLabel: "Découvrir",
@@ -236,6 +236,47 @@ export const entreprisesOffers: readonly EntreprisesOffer[] = [
     ctaLabel: "Découvrir",
   },
 ];
+
+export type EntreprisesContactChannel = {
+  id: string;
+  label: string;
+  value: string;
+  href: string;
+};
+
+export type EntreprisesContactContent = {
+  id: string;
+  title: string;
+  image: string;
+  alt: string;
+  label: string;
+  channels: readonly EntreprisesContactChannel[];
+  hours: string;
+};
+
+export const entreprisesContact: EntreprisesContactContent = {
+  id: "evenements",
+  title:
+    "Notre équipe commerciale saura vous conseiller afin de répondre à votre demande.",
+  image: "/images/entreprises/equipe.png",
+  alt: "Coffret Casablanca Ladurée ouvert, macarons et couvercle illustré",
+  label: "contactez-nous",
+  channels: [
+    {
+      id: "email",
+      label: "Par mail:",
+      value: "service-commercial@laduree.com",
+      href: "mailto:service-commercial@laduree.com",
+    },
+    {
+      id: "phone",
+      label: "Par téléphone:",
+      value: "+33 1 70 22 45 20",
+      href: "tel:+33170224520",
+    },
+  ],
+  hours: "(du lundi au vendredi inclus)",
+};
 
 export const entreprisesPerks = [
   {
