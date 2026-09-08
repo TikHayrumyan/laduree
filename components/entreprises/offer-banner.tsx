@@ -46,14 +46,12 @@ export function OfferBanner({ offer }: { offer: EntreprisesOffer }) {
         />
       </motion.div>
       <div className="absolute inset-0 bg-black/20" aria-hidden />
-      <div
-        className={`relative flex w-full flex-col items-center justify-end gap-50 lg:gap-9 ${offer.titleClass}`}
-      >
-        <h2 className="w-full text-center text-[36px] leading-10.75 tracking-[-0.36px] text-white uppercase lg:text-[60px] lg:leading-18 lg:tracking-[-0.6px]">
+      <div className="relative flex w-full flex-col items-center gap-50 lg:gap-9">
+        <h2 className="w-full text-center text-[36px] leading-none tracking-[-0.36px] text-balance text-white uppercase lg:max-w-[11.5em] lg:text-[60px] lg:tracking-[-0.6px]">
           {offer.title}
         </h2>
-        <CtaButton href="/#iconiques" className="border-2 border-line">
-          Découvrir
+        <CtaButton href={offer.href} className="border-2 border-line">
+          {offer.ctaLabel}
         </CtaButton>
       </div>
     </section>

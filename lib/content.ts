@@ -198,7 +198,8 @@ export type EntreprisesOffer = {
   title: string;
   image: string;
   alt: string;
-  titleClass: string;
+  href: string;
+  ctaLabel: string;
 };
 
 export const entreprisesOffers: readonly EntreprisesOffer[] = [
@@ -207,28 +208,32 @@ export const entreprisesOffers: readonly EntreprisesOffer[] = [
     title: "Cadeaux d'entreprise",
     image: "/images/entreprises/cadeaux.png",
     alt: "Coffrets de macarons pastel sur marbre",
-    titleClass: "lg:w-127",
+    href: "#evenements",
+    ctaLabel: "Découvrir",
   },
   {
     id: "fournisseur",
     title: "Offre fournisseur Ladurée",
     image: "/images/entreprises/fournisseur.png",
     alt: "Rangées de macarons beige et rose",
-    titleClass: "lg:w-164.5",
+    href: "#evenements",
+    ctaLabel: "Découvrir",
   },
   {
     id: "personnalisation",
     title: "Cadeaux personnalisés",
     image: "/images/entreprises/hero.png",
     alt: "Coffret ovale Ladurée offert de main à main",
-    titleClass: "lg:w-127",
+    href: "#evenements",
+    ctaLabel: "Découvrir",
   },
   {
     id: "traiteur",
     title: "Nos offres Sucrées et Salées",
     image: "/images/entreprises/sucrees.png",
     alt: "Table de goûter Ladurée avec pâtisseries et thé",
-    titleClass: "lg:w-147.5",
+    href: "#evenements",
+    ctaLabel: "Découvrir",
   },
 ];
 
