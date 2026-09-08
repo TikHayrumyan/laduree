@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ShopLink } from "@/components/header/shop-link";
 import { Icon } from "@/components/ui/icon";
 import { footerColumns, socialLinks } from "@/lib/content";
 
@@ -52,9 +53,9 @@ function FooterAccordion({
       <ul className="mt-5 flex flex-col gap-2 text-[14px] leading-4.25 tracking-[-0.14px] text-muted">
         {links.map((link) => (
           <li key={link}>
-            <Link href="/#iconiques" className="hover:text-ink">
+            <ShopLink href="/#iconiques" className="text-muted hover:text-ink">
               {link}
-            </Link>
+            </ShopLink>
           </li>
         ))}
       </ul>
@@ -130,9 +131,12 @@ export function SiteFooter() {
               <ul className="flex flex-col gap-2 text-[18px] leading-5.5 tracking-[-0.18px] text-muted">
                 {column.links.map((link) => (
                   <li key={link}>
-                    <Link href="/#iconiques" className="hover:text-ink">
+                    <ShopLink
+                      href="/#iconiques"
+                      className="text-muted hover:text-ink"
+                    >
                       {link}
-                    </Link>
+                    </ShopLink>
                   </li>
                 ))}
               </ul>
