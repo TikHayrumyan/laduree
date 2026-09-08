@@ -90,10 +90,6 @@ details[open] .icon-plus {
   opacity: var(--navLineRightOpacity, 0);
 }
 
-.nav-line-open {
-  bottom: -2px;
-}
-
 .nav-line-snap {
   transition: opacity 0.2s ease-out;
 }

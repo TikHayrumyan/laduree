@@ -16,68 +16,78 @@ function opacityVar(side: Side) {
 
 export function useNavLine(pinnedLeft: boolean) {
   const headerRef = useRef<HTMLElement>(null);
+  const leftBarRef = useRef<HTMLDivElement>(null);
   const pinnedRef = useRef<HTMLButtonElement>(null);
 
-  const show = (side: Side, el: HTMLElement) => {
-    const header = headerRef.current;
-    if (!header) return;
+  const hostFor = (side: Side) =>
+    side === "left" ? (leftBarRef.current ?? headerRef.current) : headerRef.current;
 
-    const headerBox = header.getBoundingClientRect();
+  const show = (side: Side, el: HTMLElement) => {
+    const host = hostFor(side);
+    if (!host) return;
+
+    const origin = host.getBoundingClientRect();
     const box = el.getBoundingClientRect();
-    const offset = `${box.left - headerBox.left}px`;
+    const offset = `${box.left - origin.left}px`;
     const scaleX = String(box.width / BASE_WIDTH);
-    const hidden = header.style.getPropertyValue(opacityVar(side)) !== "1";
-    const line = header.querySelector(lineSelector(side));
+    const hidden = host.style.getPropertyValue(opacityVar(side)) !== "1";
+    const line = host.querySelector(lineSelector(side));
 
     if (side === "left") {
-      header.style.setProperty("--NavElOffset", offset);
-      header.style.setProperty("--NavElScaleX", scaleX);
+      host.style.setProperty("--NavElOffset", offset);
+      host.style.setProperty("--NavElScaleX", scaleX);
     } else {
-      header.style.setProperty("--NavElRightOffset", offset);
-      header.style.setProperty("--NavElRightScaleX", scaleX);
+      host.style.setProperty("--NavElRightOffset", offset);
+      host.style.setProperty("--NavElRightScaleX", scaleX);
     }
 
     if (hidden && line instanceof HTMLElement) {
       line.classList.add("nav-line-snap");
       void line.offsetWidth;
-      header.style.setProperty(opacityVar(side), "1");
+      host.style.setProperty(opacityVar(side), "1");
       requestAnimationFrame(() => line.classList.remove("nav-line-snap"));
       return;
     }
 
-    header.style.setProperty(opacityVar(side), "1");
+    host.style.setProperty(opacityVar(side), "1");
   };
 
   const hide = (side: Side) => {
-    const header = headerRef.current;
-    if (!header) return;
+    const host = hostFor(side);
+    if (!host) return;
 
     if (side === "left" && pinnedLeft && pinnedRef.current) {
       show("left", pinnedRef.current);
       return;
     }
 
-    header.style.setProperty(opacityVar(side), "0");
+    host.style.setProperty(opacityVar(side), "0");
   };
 
   useEffect(() => {
     const header = headerRef.current;
-    if (!header) return;
+    const leftHost = leftBarRef.current ?? header;
+    if (!header || !leftHost) return;
 
     if (pinnedLeft && pinnedRef.current) {
+      header.style.setProperty("--navLineRightOpacity", "0");
       show("left", pinnedRef.current);
       return;
     }
 
-    header.style.setProperty("--navLineOpacity", "0");
+    leftHost.style.setProperty("--navLineOpacity", "0");
   }, [pinnedLeft]);
 
-  const bind = (side: Side) => ({
-    onMouseEnter: (event: MouseEvent<HTMLElement>) => {
-      show(side, event.currentTarget);
-    },
-    onMouseLeave: () => hide(side),
-  });
+  const bind = (side: Side) => {
+    if (pinnedLeft) return {};
 
-  return { headerRef, pinnedRef, bind };
+    return {
+      onMouseEnter: (event: MouseEvent<HTMLElement>) => {
+        show(side, event.currentTarget);
+      },
+      onMouseLeave: () => hide(side),
+    };
+  };
+
+  return { headerRef, leftBarRef, pinnedRef, bind };
 }

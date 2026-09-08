@@ -92,7 +92,7 @@ export function SiteHeader() {
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [sentinelRef, inverted] = useOffscreen();
-  const { headerRef, pinnedRef, bind } = useNavLine(shopOpen);
+  const { headerRef, leftBarRef, pinnedRef, bind } = useNavLine(shopOpen);
   const dark = inverted || shopOpen || mobileOpen;
   const leftLinkClass = shopOpen ? mutedLinkClass : navLinkClass;
 
@@ -117,15 +117,7 @@ export function SiteHeader() {
         />
         <div
           aria-hidden
-          className={`nav-line-left max-lg:hidden ${dark ? "bg-ink" : "bg-white"} ${
-            shopOpen ? "nav-line-open" : ""
-          }`}
-        />
-        <div
-          aria-hidden
-          className={`nav-line-right max-lg:hidden ${dark ? "bg-ink" : "bg-white"} ${
-            shopOpen ? "nav-line-open" : ""
-          }`}
+          className={`nav-line-right max-lg:hidden ${dark ? "bg-ink" : "bg-white"}`}
         />
         <nav
           aria-label="Navigation principale"
@@ -200,10 +192,15 @@ export function SiteHeader() {
       </header>
 
       <div
-        className={`pointer-events-none fixed inset-x-0 top-0 z-50 hidden h-nav px-5 lg:flex lg:px-12.5 ${
+        ref={leftBarRef}
+        className={`pointer-events-none fixed inset-x-0 top-0 z-50 hidden h-nav border-b-[0.5px] border-transparent px-5 lg:flex lg:px-12.5 ${
           dark ? "text-ink" : "text-white"
         }`}
       >
+        <div
+          aria-hidden
+          className={`nav-line-left ${dark ? "bg-ink" : "bg-white"}`}
+        />
         <div className="pointer-events-auto">
           <DesktopLeftNav
             shopOpen={shopOpen}
