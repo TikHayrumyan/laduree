@@ -10,11 +10,7 @@ function CategoryNav() {
           {index > 0 ? (
             <span className="size-1 rounded-full bg-muted" aria-hidden />
           ) : null}
-          <span
-            className={`whitespace-nowrap text-center text-[20px] leading-6 tracking-[-0.2px] lg:text-[28px] lg:leading-8.5 lg:tracking-[-0.28px] ${
-              index === 0 ? "text-ink" : "text-muted"
-            }`}
-          >
+          <span className="cursor-pointer whitespace-nowrap text-center text-[20px] leading-6 tracking-[-0.2px] text-muted hover:text-ink lg:text-[28px] lg:leading-8.5 lg:tracking-[-0.28px]">
             {category}
           </span>
         </div>
