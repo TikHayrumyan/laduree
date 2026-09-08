@@ -35,6 +35,10 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
         <SheetDescription className="sr-only">
           Navigation de la boutique Ladurée
         </SheetDescription>
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-nav border-b-[0.5px] border-nav-line/50"
+        />
         <div className="flex min-h-0 w-full flex-1 flex-col gap-6.75 px-7">
           <div className="flex w-full shrink-0">
             {shopModes.map((item) => {
