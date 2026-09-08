@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 export default function ServiceCommercialPage() {
   return (
     <div className="flex min-h-full flex-col bg-cream pt-nav">
-      <EntreprisesSubNav />
       <main className="flex flex-col items-center gap-10 lg:gap-20">
+        <EntreprisesSubNav />
         <EntreprisesHero />
         <div className="flex w-full flex-col">
           {entreprisesOffers.map((offer) => (
