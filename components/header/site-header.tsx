@@ -23,7 +23,7 @@ function Logo({ dark }: { dark: boolean }) {
   return (
     <Link
       href="/"
-      className={`flex w-36.25 cursor-pointer flex-col items-center ${dark ? "text-ink" : "text-white"}`}
+      className={`flex w-36.25 cursor-pointer flex-col items-center transition-colors duration-700 ${dark ? "text-ink" : "text-white"}`}
       aria-label="Ladurée Paris, accueil"
     >
       <span className="text-[32px] leading-9.5 lg:-mb-1">LADUREE</span>
@@ -51,14 +51,16 @@ export function SiteHeader() {
       />
       <header
         ref={headerRef}
-        className={`pointer-events-auto fixed inset-x-0 top-0 z-50 h-nav border-b-[0.5px] px-5 lg:px-12.5 ${
-          inverted && !shopOpen
-            ? "border-nav-line bg-cream"
-            : shopOpen
-              ? "border-nav-line bg-transparent"
-              : "border-white/20 bg-transparent"
+        className={`pointer-events-auto fixed inset-x-0 top-0 z-50 h-nav border-b-[0.5px] px-5 transition-[border-color] duration-700 lg:px-12.5 ${
+          inverted || shopOpen ? "border-nav-line" : "border-white/20"
         }`}
       >
+        <div
+          aria-hidden
+          className={`pointer-events-none absolute inset-0 bg-cream transition-opacity duration-700 ${
+            inverted && !shopOpen ? "opacity-100" : "opacity-0"
+          }`}
+        />
         <div
           aria-hidden
           className={`nav-line-left max-lg:hidden ${dark ? "bg-ink" : "bg-white"} ${
