@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { motion } from "motion/react";
 import {
   Sheet,
   SheetContent,
@@ -15,6 +16,19 @@ type ShopMenuProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 };
+
+const easeExpoOut = [0.16, 1.08, 0.38, 0.98] as const;
+
+function categoryTransition(index: number) {
+  const delay = 0.15 + index * 0.02;
+
+  return {
+    delay,
+    duration: 0.9,
+    opacity: { duration: 0.9, ease: "easeOut" as const, delay },
+    y: { duration: 0.9, ease: easeExpoOut, delay },
+  };
+}
 
 export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
   const [modeId, setModeId] = useState<ShopMode["id"]>("delivery");
@@ -60,10 +74,16 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
               );
             })}
           </div>
-          <div className="flex w-full flex-1 flex-col gap-4 overflow-y-auto pb-10 scrollbar-none">
-            {mode.categories.map((category) => (
-              <article
+          <div
+            key={modeId}
+            className="flex w-full flex-1 flex-col gap-4 overflow-y-auto pb-10 scrollbar-none"
+          >
+            {mode.categories.map((category, index) => (
+              <motion.article
                 key={category.id}
+                initial={{ opacity: 0, y: 48 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={categoryTransition(index)}
                 className="flex w-full items-start justify-between"
               >
                 <div className="flex min-w-0 flex-1 flex-col gap-3">
@@ -92,7 +112,7 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
                     sizes="254px"
                   />
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
