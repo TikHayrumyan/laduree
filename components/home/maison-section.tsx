@@ -34,7 +34,7 @@ export function MaisonSection() {
           fill
           className="object-cover"
           sizes="100vw"
-          quality={100}
+          quality={90}
         />
       </div>
     </section>

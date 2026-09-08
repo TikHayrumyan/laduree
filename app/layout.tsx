@@ -16,7 +16,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   preconnect("https://p.typekit.net", { crossOrigin: "anonymous" });
 
   return (
-    <html lang="fr" className="h-full antialiased">
+    <html lang="fr" className="h-full antialiased" data-scroll-behavior="smooth">
       <body className="relative min-h-full bg-cream font-serif text-ink">
         <SiteHeader />
         {children}

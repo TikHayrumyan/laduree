@@ -43,7 +43,7 @@ export function OfferBanner({ offer }: { offer: EntreprisesOffer }) {
           fill
           className="object-cover"
           sizes="100vw"
-          quality={100}
+          quality={90}
         />
       </motion.div>
       <div className="absolute inset-0 bg-black/20" aria-hidden />
