@@ -185,6 +185,76 @@ export const shopModes: readonly ShopMode[] = [
   },
 ];
 
+export const entreprisesNav = [
+  { href: "#cadeaux", label: "Cadeaux" },
+  { href: "#personnalisation", label: "Personnalisation" },
+  { href: "#traiteur", label: "Traiteur" },
+  { href: "#fournisseur", label: "Fournisseur" },
+  { href: "#evenements", label: "Evènements" },
+] as const;
+
+export type EntreprisesOffer = {
+  id: string;
+  title: string;
+  image: string;
+  alt: string;
+  titleClass: string;
+};
+
+export const entreprisesOffers: readonly EntreprisesOffer[] = [
+  {
+    id: "cadeaux",
+    title: "Cadeaux d'entreprise",
+    image: "/images/entreprises/cadeaux.png",
+    alt: "Coffrets de macarons pastel sur marbre",
+    titleClass: "lg:w-127",
+  },
+  {
+    id: "fournisseur",
+    title: "Offre fournisseur Ladurée",
+    image: "/images/entreprises/fournisseur.png",
+    alt: "Rangées de macarons beige et rose",
+    titleClass: "lg:w-164.5",
+  },
+  {
+    id: "personnalisation",
+    title: "Cadeaux personnalisés",
+    image: "/images/entreprises/hero.png",
+    alt: "Coffret ovale Ladurée offert de main à main",
+    titleClass: "lg:w-127",
+  },
+  {
+    id: "traiteur",
+    title: "Nos offres Sucrées et Salées",
+    image: "/images/entreprises/sucrees.png",
+    alt: "Table de goûter Ladurée avec pâtisseries et thé",
+    titleClass: "lg:w-147.5",
+  },
+];
+
+export const entreprisesPerks = [
+  {
+    id: "livraison",
+    title: "livraison à domicile",
+    text: "En France et en Europe. Livraison coursier à Paris [et proche banlieue]. Offerte dès 75 € d'achat (voir conditions)",
+  },
+  {
+    id: "froid",
+    title: "Chaine du Froid",
+    text: "Expédition des commandes en température contrôlée [ou en frais] la veille de la réception souhaitée.",
+  },
+  {
+    id: "proteges",
+    title: "Produits Protégés",
+    text: "Calages en matière recyclables pour une parfaite préservation  et protection des produits.",
+  },
+  {
+    id: "service",
+    title: "Service Client",
+    text: "Du lundi au vendredi de 9H à 17H par :\n Mail à contact@laduree.com\n Formulaire via le site",
+  },
+] as const;
+
 export const socialLinks = [
   {
     name: "Instagram",

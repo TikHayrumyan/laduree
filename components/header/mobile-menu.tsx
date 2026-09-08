@@ -20,7 +20,7 @@ type MobileMenuProps = {
 type View = "root" | "shop" | "category";
 
 const rootLinks = [
-  { href: "/#entreprises", label: "Entreprises" },
+  { href: "/service-commercial", label: "Entreprises" },
   { href: "/#maison", label: "La Maison" },
   { href: "/#footer", label: "Le Club Ladurée" },
 ] as const;

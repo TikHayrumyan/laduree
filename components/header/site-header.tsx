@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, type Ref } from "react";
 import { MobileMenu } from "@/components/header/mobile-menu";
 import { ShopMenu } from "@/components/header/shop-menu";
@@ -9,7 +10,7 @@ import { useNavLine } from "@/hooks/use-nav-line";
 import { useOffscreen } from "@/hooks/use-offscreen";
 
 const desktopLeft = [
-  { href: "/#entreprises", label: "Entreprises" },
+  { href: "/service-commercial", label: "Entreprises" },
   { href: "/#maison", label: "La Maison" },
 ] as const;
 
@@ -89,11 +90,14 @@ function DesktopLeftNav({
 }
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const inner = pathname !== "/";
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [sentinelRef, inverted] = useOffscreen();
   const { headerRef, leftBarRef, pinnedRef, bind } = useNavLine(shopOpen);
-  const dark = inverted || shopOpen || mobileOpen;
+  const cream = inverted || shopOpen || inner;
+  const dark = cream || mobileOpen;
   const leftLinkClass = shopOpen ? mutedLinkClass : navLinkClass;
 
   return (
@@ -107,12 +111,12 @@ export function SiteHeader() {
         ref={headerRef}
         className={`pointer-events-auto fixed inset-x-0 top-0 h-nav border-b-[0.5px] px-5 transition-[border-color] duration-700 lg:px-12.5 ${
           shopOpen ? "z-20" : "z-50"
-        } ${inverted || shopOpen ? "border-nav-line" : "border-white/20"}`}
+        } ${cream ? "border-nav-line" : "border-white/20"}`}
       >
         <div
           aria-hidden
           className={`pointer-events-none absolute inset-0 bg-cream transition-opacity duration-700 ${
-            inverted || shopOpen ? "opacity-100" : "opacity-0"
+            cream ? "opacity-100" : "opacity-0"
           }`}
         />
         <div
