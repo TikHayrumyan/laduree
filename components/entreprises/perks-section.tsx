@@ -1,10 +1,17 @@
 "use client";
 
 import useEmblaCarousel from "embla-carousel-react";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
-import { entreprisesPerks, type EntreprisesPerk } from "@/lib/content";
+import { entreprisesPerkIds, type EntreprisesPerkId } from "@/lib/content";
 
-function PerkCard({ title, text }: Pick<EntreprisesPerk, "title" | "text">) {
+function PerkCard({
+  title,
+  text,
+}: {
+  title: string;
+  text: string;
+}) {
   return (
     <div className="flex w-full flex-col items-center gap-6 text-lg leading-5.5 tracking-[-0.18px]">
       <p className="text-center text-ink uppercase">{title}</p>
@@ -14,6 +21,7 @@ function PerkCard({ title, text }: Pick<EntreprisesPerk, "title" | "text">) {
 }
 
 export function EntreprisesPerks() {
+  const t = useTranslations("Entreprises");
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     breakpoints: {
@@ -35,6 +43,12 @@ export function EntreprisesPerks() {
     };
   }, [emblaApi, onSelect]);
 
+  const perk = (id: EntreprisesPerkId) => ({
+    id,
+    title: t(`perks.${id}.title`),
+    text: t(`perks.${id}.text`),
+  });
+
   return (
     <section className="flex w-full flex-col items-center border-t-[0.5px] border-nav-line px-5 py-10 lg:px-12.5">
       <div
@@ -42,28 +56,32 @@ export function EntreprisesPerks() {
         ref={emblaRef}
         role="region"
         aria-roledescription="carousel"
-        aria-label="Informations"
+        aria-label={t("perksAria")}
       >
         <div className="flex lg:gap-17.5">
-          {entreprisesPerks.map((perk) => (
-            <div
-              key={perk.id}
-              className="min-w-0 flex-[0_0_100%] lg:flex-1"
-              role="group"
-              aria-roledescription="slide"
-              aria-label={perk.title}
-            >
-              <PerkCard title={perk.title} text={perk.text} />
-            </div>
-          ))}
+          {entreprisesPerkIds.map((id) => {
+            const item = perk(id);
+
+            return (
+              <div
+                key={id}
+                className="min-w-0 flex-[0_0_100%] lg:flex-1"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={item.title}
+              >
+                <PerkCard title={item.title} text={item.text} />
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="mt-8 flex items-center gap-2 lg:hidden">
-        {entreprisesPerks.map((perk, index) => (
+        {entreprisesPerkIds.map((id, index) => (
           <button
-            key={perk.id}
+            key={id}
             type="button"
-            aria-label={perk.title}
+            aria-label={perk(id).title}
             aria-current={index === selected ? "true" : undefined}
             onClick={() => emblaApi?.scrollTo(index)}
             className={`h-1 w-1 cursor-pointer rounded-full ${

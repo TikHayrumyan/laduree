@@ -1,12 +1,3 @@
-export const categories = [
-  "Macarons",
-  "Eugenie",
-  "Chocolats & Confiserie",
-  "Thes",
-  "Biscuits",
-  "Confitures & Miel",
-] as const;
-
 export type Product = {
   id: string;
   name: string;
@@ -61,124 +52,53 @@ export const products: Product[] = [
   },
 ];
 
-export const footerColumns = [
-  {
-    id: "laduree",
-    title: "Ladurée",
-    links: [
-      "Coffrets de macarons",
-      "Coffrets d'Eugénie",
-      "Assortiments gourmands",
-      "Chocolats",
-      "Expériences en boutiques",
-      "Le Club Ladurée",
-    ],
-  },
-  {
-    id: "informations",
-    title: "Plus d'informations",
-    links: [
-      "Nos collections",
-      "L'histoire Ladurée",
-      "Allergènes & Emballages",
-      "Ladurée Café",
-    ],
-  },
-  {
-    id: "entreprises",
-    title: "Entreprises",
-    links: [
-      "Cadeaux d'affaires",
-      "Offre fournisseur",
-      "Cadeaux personnalisés",
-      "Offre sucrée et salée",
-      "Evènements & réceptions",
-    ],
-  },
-  {
-    id: "aide",
-    title: "Aide",
-    links: ["Demande de contact", "FAQ", "Conditions Le Club ladurée"],
-  },
+export const footerColumnIds = [
+  "laduree",
+  "informations",
+  "entreprises",
+  "aide",
 ] as const;
 
+export type FooterColumnId = (typeof footerColumnIds)[number];
+
+export type ShopCategoryId =
+  | "macarons"
+  | "eugenie"
+  | "chocolat"
+  | "tea-time"
+  | "patisseries"
+  | "cadeaux"
+  | "patisseries-boutique";
+
+export type ShopModeId = "delivery" | "boutique";
+
 export type ShopCategory = {
-  id: string;
-  title: string;
-  links: readonly string[];
+  id: ShopCategoryId;
   image: string;
 };
 
 export type ShopMode = {
-  id: "delivery" | "boutique";
-  label: string;
+  id: ShopModeId;
   categories: readonly ShopCategory[];
 };
 
 export const shopModes: readonly ShopMode[] = [
   {
     id: "delivery",
-    label: "Livraison à domicile",
     categories: [
-      {
-        id: "macarons",
-        title: "Macarons",
-        links: [
-          "Coffrets de Macarons",
-          "Composeur",
-          "Parfums de Macarons",
-        ],
-        image: "/images/nav/macarons.png",
-      },
-      {
-        id: "eugenie",
-        title: "Eugénie",
-        links: [
-          "Coffrets d’Eugénie",
-          "Composeur Eugénie",
-          "Parfums d’Eugénie",
-        ],
-        image: "/images/nav/eugenie.png",
-      },
-      {
-        id: "chocolat",
-        title: "Chocolat",
-        links: ["Perles", "Coffrets de Chocolat", "Confiserie"],
-        image: "/images/nav/chocolat.png",
-      },
-      {
-        id: "tea-time",
-        title: "Tea Time",
-        links: ["Thé", "Confitures", "Biscuits"],
-        image: "/images/nav/tea-time.png",
-      },
-      {
-        id: "patisseries",
-        title: "Pâtisseries",
-        links: ["Fondants", "Pâtisseries par coursier", "Bûche Noël"],
-        image: "/images/nav/patisseries.png",
-      },
-      {
-        id: "cadeaux",
-        title: "Cadeaux",
-        links: [
-          "Assortiment prêts à offrir",
-          "Composeur Coffret cadeau",
-          "L’abonnement Gourmand",
-          "Carte Cadeau",
-        ],
-        image: "/images/nav/cadeaux.png",
-      },
+      { id: "macarons", image: "/images/nav/macarons.png" },
+      { id: "eugenie", image: "/images/nav/eugenie.png" },
+      { id: "chocolat", image: "/images/nav/chocolat.png" },
+      { id: "tea-time", image: "/images/nav/tea-time.png" },
+      { id: "patisseries", image: "/images/nav/patisseries.png" },
+      { id: "cadeaux", image: "/images/nav/cadeaux.png" },
     ],
   },
   {
     id: "boutique",
-    label: "Pâtisseries en boutique",
     categories: [
       {
         id: "patisseries-boutique",
-        title: "Pâtisseries",
-        links: ["Fondants", "Pâtisseries par coursier", "Bûche Noël"],
         image: "/images/nav/patisseries-boutique.png",
       },
     ],
@@ -186,134 +106,83 @@ export const shopModes: readonly ShopMode[] = [
 ];
 
 export const entreprisesNav = [
-  { href: "#cadeaux", label: "Cadeaux" },
-  { href: "#personnalisation", label: "Personnalisation" },
-  { href: "#traiteur", label: "Traiteur" },
-  { href: "#fournisseur", label: "Fournisseur" },
-  { href: "#evenements", label: "Evènements" },
+  { id: "cadeaux", href: "#cadeaux" },
+  { id: "personnalisation", href: "#personnalisation" },
+  { id: "traiteur", href: "#traiteur" },
+  { id: "fournisseur", href: "#fournisseur" },
+  { id: "evenements", href: "#evenements" },
 ] as const;
 
+export type EntreprisesOfferId =
+  | "cadeaux"
+  | "fournisseur"
+  | "personnalisation"
+  | "traiteur";
+
 export type EntreprisesOffer = {
-  id: string;
-  title: string;
+  id: EntreprisesOfferId;
   image: string;
-  alt: string;
   href: string;
-  ctaLabel: string;
 };
 
 export const entreprisesOffers: readonly EntreprisesOffer[] = [
   {
     id: "cadeaux",
-    title: "Cadeaux d'entreprise",
     image: "/images/entreprises/cadeaux.webp",
-    alt: "Coffrets de macarons pastel sur marbre",
     href: "#evenements",
-    ctaLabel: "Découvrir",
   },
   {
     id: "fournisseur",
-    title: "Offre fournisseur Ladurée",
     image: "/images/entreprises/fournisseur.png",
-    alt: "Rangées de macarons beige et rose",
     href: "#evenements",
-    ctaLabel: "Découvrir",
   },
   {
     id: "personnalisation",
-    title: "Cadeaux personnalisés",
     image: "/images/entreprises/hero.png",
-    alt: "Coffret ovale Ladurée offert de main à main",
     href: "#evenements",
-    ctaLabel: "Découvrir",
   },
   {
     id: "traiteur",
-    title: "Nos offres Sucrées et Salées",
     image: "/images/entreprises/sucrees.png",
-    alt: "Table de goûter Ladurée avec pâtisseries et thé",
     href: "#evenements",
-    ctaLabel: "Découvrir",
   },
 ];
 
 export type EntreprisesContactChannel = {
-  id: string;
-  label: string;
+  id: "email" | "phone";
   value: string;
   href: string;
 };
 
-export type EntreprisesContactContent = {
-  id: string;
-  title: string;
-  image: string;
-  alt: string;
-  label: string;
-  channels: readonly EntreprisesContactChannel[];
-  hours: string;
-};
-
-export const entreprisesContact: EntreprisesContactContent = {
+export const entreprisesContact = {
   id: "evenements",
-  title:
-    "Notre équipe commerciale saura vous conseiller afin de répondre à votre demande.",
   image: "/images/entreprises/equipe.png",
-  alt: "Coffret Casablanca Ladurée ouvert, macarons et couvercle illustré",
-  label: "contactez-nous",
   channels: [
     {
       id: "email",
-      label: "Par mail:",
       value: "service-commercial@laduree.com",
       href: "mailto:service-commercial@laduree.com",
     },
     {
       id: "phone",
-      label: "Par téléphone:",
       value: "+33 1 70 22 45 20",
       href: "tel:+33170224520",
     },
-  ],
-  hours: "(du lundi au vendredi inclus)",
-};
+  ] as const satisfies readonly EntreprisesContactChannel[],
+} as const;
 
-export type EntreprisesPerk = {
-  id: string;
-  title: string;
-  text: string;
-};
+export const entreprisesPerkIds = [
+  "livraison",
+  "froid",
+  "proteges",
+  "service",
+] as const;
 
-export const entreprisesPerks: readonly EntreprisesPerk[] = [
-  {
-    id: "livraison",
-    title: "livraison à domicile",
-    text: "En France et en Europe. Livraison coursier à Paris [et proche banlieue]. Offerte dès 75 € d'achat (voir conditions)",
-  },
-  {
-    id: "froid",
-    title: "Chaine du Froid",
-    text: "Expédition des commandes en température contrôlée [ou en frais] la veille de la réception souhaitée.",
-  },
-  {
-    id: "proteges",
-    title: "Produits Protégés",
-    text: "Calages en matière recyclables pour une parfaite préservation et protection des produits.",
-  },
-  {
-    id: "service",
-    title: "Service Client",
-    text: "Du lundi au vendredi de 9H à 17H par : Mail à contact@laduree.com Formulaire via le site",
-  },
-];
+export type EntreprisesPerkId = (typeof entreprisesPerkIds)[number];
 
 export const notFound = {
-  title: "OOPS!",
-  text: "Il semble que ce que vous cherchez n'est plus ici...",
-  ctaLabel: "Retour à l'accueil",
   href: "/",
   image: "/images/not-found-org.png",
-  alt: "Macarons Ladurée pastel",
 } as const;
 
 export const socialLinks = [

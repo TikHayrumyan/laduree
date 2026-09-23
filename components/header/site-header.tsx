@@ -1,18 +1,14 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState, type Ref } from "react";
+import { LocaleSwitcher } from "@/components/header/locale-switcher";
 import { MobileMenu } from "@/components/header/mobile-menu";
 import { ShopMenu } from "@/components/header/shop-menu";
 import { Icon } from "@/components/ui/icon";
 import { useNavLine } from "@/hooks/use-nav-line";
 import { useOffscreen } from "@/hooks/use-offscreen";
-
-const desktopLeft = [
-  { href: "/service-commercial", label: "Entreprises" },
-  { href: "/#maison", label: "La Maison" },
-] as const;
+import { Link, usePathname } from "@/i18n/navigation";
 
 const navLinkClass =
   "flex h-full cursor-pointer items-center text-[20px] leading-6 tracking-[-0.2px]";
@@ -21,11 +17,13 @@ const mutedLinkClass =
   "flex h-full cursor-pointer items-center text-[20px] leading-6 tracking-[-0.2px] text-muted";
 
 function Logo({ dark }: { dark: boolean }) {
+  const t = useTranslations("Common");
+
   return (
     <Link
       href="/"
       className={`flex w-logo cursor-pointer flex-col items-center transition-colors duration-700 ${dark ? "text-ink" : "text-white"}`}
-      aria-label="Ladurée Paris, accueil"
+      aria-label={t("logoAria")}
     >
       <span className="text-[32px] leading-9.5 lg:-mb-1">LADUREE</span>
       <span className="hidden text-center text-[20px] leading-6 italic lg:block">
@@ -50,7 +48,12 @@ function DesktopLeftNav({
   pinnedRef?: Ref<HTMLButtonElement>;
   bind?: (side: "left" | "right") => Record<string, unknown>;
 }) {
+  const t = useTranslations("Nav");
   const leftBind = bind?.("left") ?? {};
+  const desktopLeft = [
+    { href: "/service-commercial", label: t("entreprises") },
+    { href: "/#maison", label: t("maison") },
+  ] as const;
 
   return (
     <div className="flex h-full items-center gap-5">
@@ -63,7 +66,7 @@ function DesktopLeftNav({
         className={navLinkClass}
         {...leftBind}
       >
-        E- Shop
+        {t("shop")}
       </button>
       {desktopLeft.map((item) => (
         <Link
@@ -83,13 +86,14 @@ function DesktopLeftNav({
         {...leftBind}
       >
         <Icon src="/icons/search.svg" alt="" size={18} current />
-        Recherche
+        {t("search")}
       </Link>
     </div>
   );
 }
 
 export function SiteHeader() {
+  const t = useTranslations("Nav");
   const pathname = usePathname();
   const inner = pathname !== "/";
   const [shopOpen, setShopOpen] = useState(false);
@@ -99,6 +103,10 @@ export function SiteHeader() {
   const cream = inverted || shopOpen || inner;
   const dark = cream || mobileOpen;
   const leftLinkClass = shopOpen ? mutedLinkClass : navLinkClass;
+  const desktopLeft = [
+    { href: "/service-commercial", label: t("entreprises") },
+    { href: "/#maison", label: t("maison") },
+  ] as const;
 
   return (
     <>
@@ -124,7 +132,7 @@ export function SiteHeader() {
           className={`nav-line-right max-lg:hidden ${dark ? "bg-ink" : "bg-white"}`}
         />
         <nav
-          aria-label="Navigation principale"
+          aria-label={t("mainAria")}
           className={`relative z-10 flex h-full items-center justify-between transition-colors duration-700 lg:hidden ${
             dark ? "text-ink" : "text-white"
           }`}
@@ -135,19 +143,19 @@ export function SiteHeader() {
             onClick={() => setMobileOpen(true)}
             className="cursor-pointer text-[20px] tracking-[-0.2px]"
           >
-            Menu
+            {t("menu")}
           </button>
           <Logo dark={dark} />
           <Link
             href="/#footer"
             className="cursor-pointer text-[20px] tracking-[-0.2px]"
           >
-            Panier
+            {t("cart")}
           </Link>
         </nav>
 
         <nav
-          aria-label="Navigation principale"
+          aria-label={t("mainAria")}
           className={`relative hidden h-full grid-cols-[1fr_auto_1fr] items-center transition-colors duration-700 lg:grid ${
             dark ? "text-ink" : "text-white"
           }`}
@@ -156,7 +164,7 @@ export function SiteHeader() {
             className="invisible flex h-full items-center gap-5 justify-self-start"
             aria-hidden
           >
-            <span className={navLinkClass}>E- Shop</span>
+            <span className={navLinkClass}>{t("shop")}</span>
             {desktopLeft.map((item) => (
               <span key={item.href} className={leftLinkClass}>
                 {item.label}
@@ -164,21 +172,19 @@ export function SiteHeader() {
             ))}
             <span className={`gap-2 ${leftLinkClass}`}>
               <Icon src="/icons/search.svg" alt="" size={18} current />
-              Recherche
+              {t("search")}
             </span>
           </div>
           <Logo dark={dark} />
           <div className="flex h-full items-center justify-end gap-5 justify-self-end">
             <Link href="/#footer" className={navLinkClass} {...bind("right")}>
-              Le Club Laduree
+              {t("club")}
             </Link>
-            <span className={navLinkClass} {...bind("right")}>
-              FR/FR
-            </span>
+            <LocaleSwitcher className={navLinkClass} {...bind("right")} />
             <Link
               href="/#footer"
               className={navLinkClass}
-              aria-label="Compte"
+              aria-label={t("account")}
               {...bind("right")}
             >
               <Icon src="/icons/user.svg" alt="" size={20} current />
@@ -186,7 +192,7 @@ export function SiteHeader() {
             <Link
               href="/#footer"
               className={navLinkClass}
-              aria-label="Panier"
+              aria-label={t("cart")}
               {...bind("right")}
             >
               <Icon src="/icons/bag.svg" alt="" size={28} current />

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import { Icon } from "@/components/ui/icon";
 import type { Product } from "@/lib/content";
 
@@ -20,6 +21,8 @@ const cartTransition = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
+  const t = useTranslations("Common");
+
   return (
     <motion.article
       initial="rest"
@@ -46,7 +49,7 @@ export function ProductCard({ product }: ProductCardProps) {
           className="absolute inset-x-1 bottom-2.5 flex cursor-pointer items-center justify-between bg-white px-3 py-2 transition-colors duration-300 hover:bg-sage lg:inset-x-[3.5px] lg:bottom-3 lg:px-6 lg:py-3"
         >
           <span className="whitespace-nowrap text-[12px] leading-3.5 tracking-[-0.12px] text-black lg:text-[20px] lg:leading-6 lg:tracking-[-0.2px]">
-            Ajouter au panier
+            {t("addToCart")}
           </span>
           <span className="lg:hidden">
             <Icon src="/icons/bag-dark.svg" alt="" size={16} />

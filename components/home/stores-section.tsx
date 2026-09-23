@@ -9,9 +9,11 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useTranslations } from "next-intl";
 import { CtaButton } from "@/components/ui/cta-button";
 
 export function StoresSection() {
+  const t = useTranslations("Home.stores");
   const frameRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -37,7 +39,7 @@ export function StoresSection() {
       >
         <Image
           src="/images/storefront.png"
-          alt="Façade d'une boutique Ladurée"
+          alt={t("alt")}
           fill
           className="object-cover"
           sizes="100vw"
@@ -46,10 +48,9 @@ export function StoresSection() {
       <div className="absolute inset-0 bg-black/20" aria-hidden />
       <div className="relative flex w-full flex-col items-center justify-end gap-50 lg:w-127 lg:gap-9">
         <h2 className="w-full text-center text-[36px] leading-10.75 tracking-[-0.36px] text-white lg:text-[60px] lg:leading-18 lg:tracking-[-0.6px]">
-          NOS ADRESSES
-          <br /> ET RESTAURANTS
+          {t.rich("title", { br: () => <br /> })}
         </h2>
-        <CtaButton href="/#footer">Nos Boutiques</CtaButton>
+        <CtaButton href="/#footer">{t("cta")}</CtaButton>
       </div>
     </section>
   );

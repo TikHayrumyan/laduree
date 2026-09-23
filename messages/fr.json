@@ -1,0 +1,263 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Ladurée Paris | L'art de la gourmandise depuis 1862",
+      "description": "Née rue Royale à Paris, Ladurée célèbre l’élégance du goût à travers ses macarons et pâtisseries d’exception."
+    },
+    "entreprises": {
+      "title": "Service commercial | Ladurée Paris",
+      "description": "Cadeaux d’affaires, personnalisation, traiteur et évènements : l’équipe commerciale Ladurée vous accompagne."
+    },
+    "notFound": {
+      "title": "Page introuvable | Ladurée Paris",
+      "description": "La page que vous cherchez n’est plus ici. Retrouvez les macarons et pâtisseries Ladurée sur l’accueil."
+    }
+  },
+  "Common": {
+    "skipToContent": "Aller au contenu",
+    "addToCart": "Ajouter au panier",
+    "logoAria": "Ladurée Paris, accueil"
+  },
+  "Nav": {
+    "mainAria": "Navigation principale",
+    "shop": "E- Shop",
+    "entreprises": "Entreprises",
+    "maison": "La Maison",
+    "search": "Recherche",
+    "searchPlaceholder": "Que recherchez-vous?",
+    "club": "Le Club Laduree",
+    "clubLong": "Le Club Ladurée",
+    "menu": "Menu",
+    "cart": "Panier",
+    "account": "Compte",
+    "close": "Fermer",
+    "back": "Retour",
+    "mobileAria": "Navigation mobile Ladurée",
+    "shopAria": "Navigation de la boutique Ladurée",
+    "myAccount": "Mon Compte",
+    "localeFr": "FR / EN",
+    "localeEn": "EN / FR"
+  },
+  "Shop": {
+    "modes": {
+      "delivery": "Livraison à domicile",
+      "boutique": "Pâtisseries en boutique"
+    },
+    "categories": {
+      "macarons": {
+        "title": "Macarons",
+        "links": ["Coffrets de Macarons", "Composeur", "Parfums de Macarons"]
+      },
+      "eugenie": {
+        "title": "Eugénie",
+        "links": ["Coffrets d’Eugénie", "Composeur Eugénie", "Parfums d’Eugénie"]
+      },
+      "chocolat": {
+        "title": "Chocolat",
+        "links": ["Perles", "Coffrets de Chocolat", "Confiserie"]
+      },
+      "tea-time": {
+        "title": "Tea Time",
+        "links": ["Thé", "Confitures", "Biscuits"]
+      },
+      "patisseries": {
+        "title": "Pâtisseries",
+        "links": ["Fondants", "Pâtisseries par coursier", "Bûche Noël"]
+      },
+      "cadeaux": {
+        "title": "Cadeaux",
+        "links": [
+          "Assortiment prêts à offrir",
+          "Composeur Coffret cadeau",
+          "L’abonnement Gourmand",
+          "Carte Cadeau"
+        ]
+      },
+      "patisseries-boutique": {
+        "title": "Pâtisseries",
+        "links": ["Fondants", "Pâtisseries par coursier", "Bûche Noël"]
+      }
+    }
+  },
+  "Footer": {
+    "newsletter": "NEWSLETTER",
+    "emailPlaceholder": "Adresse email",
+    "subscribeAria": "S'inscrire à la newsletter",
+    "follow": "Suivez-nous",
+    "legals": "LEGALS",
+    "legalNotice": "Mentions légales",
+    "crestAlt": "Emblème Ladurée Paris, maison fondée en 1862",
+    "columns": {
+      "laduree": {
+        "title": "Ladurée",
+        "links": [
+          "Coffrets de macarons",
+          "Coffrets d'Eugénie",
+          "Assortiments gourmands",
+          "Chocolats",
+          "Expériences en boutiques",
+          "Le Club Ladurée"
+        ]
+      },
+      "informations": {
+        "title": "Plus d'informations",
+        "links": [
+          "Nos collections",
+          "L'histoire Ladurée",
+          "Allergènes & Emballages",
+          "Ladurée Café"
+        ]
+      },
+      "entreprises": {
+        "title": "Entreprises",
+        "links": [
+          "Cadeaux d'affaires",
+          "Offre fournisseur",
+          "Cadeaux personnalisés",
+          "Offre sucrée et salée",
+          "Evènements & réceptions"
+        ]
+      },
+      "aide": {
+        "title": "Aide",
+        "links": ["Demande de contact", "FAQ", "Conditions Le Club ladurée"]
+      }
+    }
+  },
+  "Home": {
+    "hero": {
+      "title": "L’ART DE LA<br></br>GOURMANDISE",
+      "subtitle": "depuis 1862",
+      "cta": "Découvrir nos produits",
+      "alt": "Macarons roses Ladurée et framboises fraîches"
+    },
+    "iconiques": {
+      "title": "LES ICONIQUES",
+      "cta": "Tout découvrir",
+      "categories": [
+        "Macarons",
+        "Eugenie",
+        "Chocolats & Confiserie",
+        "Thes",
+        "Biscuits",
+        "Confitures & Miel"
+      ]
+    },
+    "gifts": {
+      "title": "IDEES CADEAUX<br></br>A PERSONNALISER",
+      "text": "Anniversaire, remerciement, célébration… Composez un écrin raffiné avec les créations Ladurée, à personnaliser en exclusivité en ligne.",
+      "cta": "Je personnalise mon coffret",
+      "alt": "Coffret ovale Ladurée offert de main à main"
+    },
+    "valentine": {
+      "eyebrow": "Trouvez le cadeau parfait",
+      "title": "Cadeaux",
+      "highlight": "Saint- Valentin",
+      "text": "Commandez dès maintenant et laissez la magie de l’amour opérer… Peut-être serezvous l’heureux élu de l’un de ces trésors romantiques !",
+      "cta": "En savoir plus",
+      "alt": "Table de fête avec pâtisseries et thé"
+    },
+    "maison": {
+      "title": "MAISON DE<br></br>PATTISSERIE DE LUXE",
+      "subtitle": "a la francaise",
+      "text": "Née rue Royale à Paris, Ladurée célèbre l’élégance du goût à travers ses macarons et pâtisseries d’exception, symboles de son savoir-faire et de son art de vivre",
+      "cta": "Découvrir La Maison",
+      "alt": "Rangées de macarons dorés et roses"
+    },
+    "heritage": {
+      "eyebrow": "Depuis 1862, la Maison Ladurée",
+      "text": "Depuis 1862,<br></br> la Maison Ladurée représente la gourmandise dans l’art de vivre à la française. Institution iconique, elle relève chaque jour avec excellence le défi du mariage de la tradition et de l’innovation dans ses créations."
+    },
+    "idealBox": {
+      "eyebrow": "Personnalisation",
+      "title": "Votre Coffret Ideal",
+      "cta": "Je compose mon coffret",
+      "alt": "Macaron rose vu de dessus"
+    },
+    "tradition": {
+      "title": "TRADITION,<br></br> MÉMOIRE & AUDACE,<br></br> DEPUIS 1862",
+      "label": "savoir-faire",
+      "text": "Nos gammes reflètent notre ambition : offrir un plaisir sensoriel fondé sur des sensations gustatives, visuelles et olfactives plongeant dans la mémoire de l enfance et de la tradition. Nos créations recréent un monde de douceur, d affection et de gourmandise. Notre créativité ancrée dans le présent les pare d intemporalité.",
+      "cta": "En savoir plus",
+      "alt": "Coffret illustré de macarons Ladurée"
+    },
+    "stores": {
+      "title": "NOS ADRESSES<br></br> ET RESTAURANTS",
+      "cta": "Nos Boutiques",
+      "alt": "Façade d'une boutique Ladurée"
+    }
+  },
+  "Entreprises": {
+    "navAria": "Offres entreprises",
+    "nav": {
+      "cadeaux": "Cadeaux",
+      "personnalisation": "Personnalisation",
+      "traiteur": "Traiteur",
+      "fournisseur": "Fournisseur",
+      "evenements": "Evènements"
+    },
+    "hero": {
+      "delivery": "livraison à domicile",
+      "options": "5 options",
+      "title": "L’art du cadeau<br></br> et de l'évènement",
+      "alt": "Coffret ovale Ladurée offert de main à main",
+      "p1": "Notre équipe commerciale vous accompagne dans le choix de vos cadeaux d'affaires, dans l'organisation de vos évènements (commandes de macarons, entremets, pièces de cocktails salées et sucrées) et dans la privatisation de nos espaces de réception.",
+      "p2": "Nous vous invitons à découvrir nos offres pour vos clients et collaborateurs."
+    },
+    "offers": {
+      "cadeaux": {
+        "title": "Cadeaux d'entreprise",
+        "alt": "Coffrets de macarons pastel sur marbre",
+        "cta": "Découvrir"
+      },
+      "fournisseur": {
+        "title": "Offre fournisseur Ladurée",
+        "alt": "Rangées de macarons beige et rose",
+        "cta": "Découvrir"
+      },
+      "personnalisation": {
+        "title": "Cadeaux personnalisés",
+        "alt": "Coffret ovale Ladurée offert de main à main",
+        "cta": "Découvrir"
+      },
+      "traiteur": {
+        "title": "Nos offres Sucrées et Salées",
+        "alt": "Table de goûter Ladurée avec pâtisseries et thé",
+        "cta": "Découvrir"
+      }
+    },
+    "contact": {
+      "title": "Notre équipe commerciale saura vous conseiller afin de répondre à votre demande.",
+      "label": "contactez-nous",
+      "alt": "Coffret Casablanca Ladurée ouvert, macarons et couvercle illustré",
+      "email": "Par mail:",
+      "phone": "Par téléphone:",
+      "hours": "(du lundi au vendredi inclus)"
+    },
+    "perksAria": "Informations",
+    "perks": {
+      "livraison": {
+        "title": "livraison à domicile",
+        "text": "En France et en Europe. Livraison coursier à Paris [et proche banlieue]. Offerte dès 75 € d'achat (voir conditions)"
+      },
+      "froid": {
+        "title": "Chaine du Froid",
+        "text": "Expédition des commandes en température contrôlée [ou en frais] la veille de la réception souhaitée."
+      },
+      "proteges": {
+        "title": "Produits Protégés",
+        "text": "Calages en matière recyclables pour une parfaite préservation et protection des produits."
+      },
+      "service": {
+        "title": "Service Client",
+        "text": "Du lundi au vendredi de 9H à 17H par : Mail à contact@laduree.com Formulaire via le site"
+      }
+    }
+  },
+  "NotFound": {
+    "title": "OOPS!",
+    "text": "Il semble que ce que vous cherchez n'est plus ici...",
+    "cta": "Retour à l'accueil",
+    "alt": "Macarons Ladurée pastel"
+  }
+}

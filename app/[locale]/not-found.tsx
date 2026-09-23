@@ -1,16 +1,14 @@
-import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { EntreprisesPerks } from "@/components/entreprises/perks-section";
 import { NotFoundHero } from "@/components/not-found/hero-section";
 
-export const metadata: Metadata = {
-  title: "Page introuvable | Ladurée Paris",
-  description:
-    "La page que vous cherchez n’est plus ici. Retrouvez les macarons et pâtisseries Ladurée sur l’accueil.",
-};
+export default async function NotFound() {
+  const t = await getTranslations("Metadata");
 
-export default function NotFound() {
   return (
     <div className="flex min-h-full flex-col bg-cream pt-nav">
+      <title>{t("notFound.title")}</title>
+      <meta name="description" content={t("notFound.description")} />
       <main>
         <NotFoundHero />
         <EntreprisesPerks />

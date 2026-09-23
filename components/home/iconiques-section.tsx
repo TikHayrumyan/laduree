@@ -1,8 +1,12 @@
+import { getTranslations } from "next-intl/server";
 import { ProductCard } from "@/components/home/product-card";
 import { TextLink } from "@/components/ui/text-link";
-import { categories, products } from "@/lib/content";
+import { products } from "@/lib/content";
 
-function CategoryNav() {
+async function CategoryNav() {
+  const t = await getTranslations("Home.iconiques");
+  const categories = t.raw("categories") as string[];
+
   return (
     <div className="flex w-full items-center gap-4 overflow-x-auto scrollbar-none lg:w-auto lg:justify-center">
       {categories.map((category, index) => (
@@ -19,7 +23,9 @@ function CategoryNav() {
   );
 }
 
-export function IconiquesSection() {
+export async function IconiquesSection() {
+  const t = await getTranslations("Home.iconiques");
+
   return (
     <section
       id="iconiques"
@@ -27,7 +33,7 @@ export function IconiquesSection() {
     >
       <div className="flex w-full flex-col items-center gap-5 lg:w-auto lg:gap-6">
         <h2 className="text-[36px] leading-10.75 tracking-[-0.36px] lg:text-[60px] lg:leading-18 lg:tracking-[-0.6px]">
-          LES ICONIQUES
+          {t("title")}
         </h2>
         <CategoryNav />
       </div>
@@ -42,7 +48,7 @@ export function IconiquesSection() {
         href="/#iconiques"
         className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
       >
-        Tout découvrir
+        {t("cta")}
       </TextLink>
     </section>
   );

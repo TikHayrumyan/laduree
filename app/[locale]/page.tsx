@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { HeritageSection } from "@/components/home/heritage-section";
 import { HeroSection } from "@/components/home/hero-section";
 import { IconiquesSection } from "@/components/home/iconiques-section";
@@ -8,15 +8,18 @@ import { PersonalizedGiftsSection } from "@/components/home/personalized-gifts-s
 import { StoresSection } from "@/components/home/stores-section";
 import { TraditionSection } from "@/components/home/tradition-section";
 import { ValentineSection } from "@/components/home/valentine-section";
+import { Link } from "@/i18n/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const t = await getTranslations("Common");
+
   return (
     <div className="flex min-h-full flex-col bg-cream">
       <Link
         href="/#iconiques"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-cream focus:px-4 focus:py-2"
       >
-        Aller au contenu
+        {t("skipToContent")}
       </Link>
       <main className="flex flex-col items-center gap-10 lg:gap-20">
         <HeroSection />

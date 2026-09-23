@@ -1,0 +1,263 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Ladurée Paris | The art of indulgence since 1862",
+      "description": "Born on rue Royale in Paris, Ladurée celebrates the elegance of taste through its exceptional macarons and pastries."
+    },
+    "entreprises": {
+      "title": "Corporate services | Ladurée Paris",
+      "description": "Business gifts, personalisation, catering and events: the Ladurée commercial team is here to help."
+    },
+    "notFound": {
+      "title": "Page not found | Ladurée Paris",
+      "description": "The page you are looking for is no longer here. Discover Ladurée macarons and pastries on the homepage."
+    }
+  },
+  "Common": {
+    "skipToContent": "Skip to content",
+    "addToCart": "Add to cart",
+    "logoAria": "Ladurée Paris, home"
+  },
+  "Nav": {
+    "mainAria": "Main navigation",
+    "shop": "E- Shop",
+    "entreprises": "Entreprises",
+    "maison": "La Maison",
+    "search": "Search",
+    "searchPlaceholder": "What are you looking for?",
+    "club": "Le Club Laduree",
+    "clubLong": "Le Club Ladurée",
+    "menu": "Menu",
+    "cart": "Bag",
+    "account": "Account",
+    "close": "Close",
+    "back": "Back",
+    "mobileAria": "Ladurée mobile navigation",
+    "shopAria": "Ladurée shop navigation",
+    "myAccount": "My Account",
+    "localeFr": "FR / EN",
+    "localeEn": "EN / FR"
+  },
+  "Shop": {
+    "modes": {
+      "delivery": "Home delivery",
+      "boutique": "Pastries in boutique"
+    },
+    "categories": {
+      "macarons": {
+        "title": "Macarons",
+        "links": ["Macaron boxes", "Composer", "Macaron flavours"]
+      },
+      "eugenie": {
+        "title": "Eugénie",
+        "links": ["Eugénie boxes", "Eugénie composer", "Eugénie flavours"]
+      },
+      "chocolat": {
+        "title": "Chocolate",
+        "links": ["Pearls", "Chocolate boxes", "Confectionery"]
+      },
+      "tea-time": {
+        "title": "Tea Time",
+        "links": ["Tea", "Jams", "Biscuits"]
+      },
+      "patisseries": {
+        "title": "Pastries",
+        "links": ["Fondants", "Pastries by courier", "Christmas log"]
+      },
+      "cadeaux": {
+        "title": "Gifts",
+        "links": [
+          "Ready-to-gift assortments",
+          "Gift box composer",
+          "The Gourmand subscription",
+          "Gift card"
+        ]
+      },
+      "patisseries-boutique": {
+        "title": "Pastries",
+        "links": ["Fondants", "Pastries by courier", "Christmas log"]
+      }
+    }
+  },
+  "Footer": {
+    "newsletter": "NEWSLETTER",
+    "emailPlaceholder": "Email address",
+    "subscribeAria": "Subscribe to the newsletter",
+    "follow": "Follow us",
+    "legals": "LEGALS",
+    "legalNotice": "Legal notice",
+    "crestAlt": "Ladurée Paris emblem, house founded in 1862",
+    "columns": {
+      "laduree": {
+        "title": "Ladurée",
+        "links": [
+          "Macaron boxes",
+          "Eugénie boxes",
+          "Gourmet assortments",
+          "Chocolates",
+          "In-store experiences",
+          "Le Club Ladurée"
+        ]
+      },
+      "informations": {
+        "title": "More information",
+        "links": [
+          "Our collections",
+          "The Ladurée story",
+          "Allergens & Packaging",
+          "Ladurée Café"
+        ]
+      },
+      "entreprises": {
+        "title": "Entreprises",
+        "links": [
+          "Business gifts",
+          "Supplier offer",
+          "Personalised gifts",
+          "Sweet and savoury offer",
+          "Events & receptions"
+        ]
+      },
+      "aide": {
+        "title": "Help",
+        "links": ["Contact request", "FAQ", "Le Club Ladurée terms"]
+      }
+    }
+  },
+  "Home": {
+    "hero": {
+      "title": "THE ART OF<br></br>INDULGENCE",
+      "subtitle": "since 1862",
+      "cta": "Discover our products",
+      "alt": "Pink Ladurée macarons and fresh raspberries"
+    },
+    "iconiques": {
+      "title": "THE ICONICS",
+      "cta": "Discover all",
+      "categories": [
+        "Macarons",
+        "Eugenie",
+        "Chocolates & Confectionery",
+        "Teas",
+        "Biscuits",
+        "Jams & Honey"
+      ]
+    },
+    "gifts": {
+      "title": "GIFT IDEAS<br></br>TO PERSONALISE",
+      "text": "Birthday, thank you, celebration… Compose a refined case with Ladurée creations, to personalise exclusively online.",
+      "cta": "I personalise my box",
+      "alt": "An oval Ladurée box offered from hand to hand"
+    },
+    "valentine": {
+      "eyebrow": "Find the perfect gift",
+      "title": "Gifts",
+      "highlight": "Valentine’s Day",
+      "text": "Order now and let the magic of love unfold… Perhaps you will be the lucky one among these romantic treasures!",
+      "cta": "Learn more",
+      "alt": "A festive table with pastries and tea"
+    },
+    "maison": {
+      "title": "HOUSE OF<br></br>LUXURY PASTRY",
+      "subtitle": "a la francaise",
+      "text": "Born on rue Royale in Paris, Ladurée celebrates the elegance of taste through its exceptional macarons and pastries, symbols of its savoir-faire and art of living",
+      "cta": "Discover La Maison",
+      "alt": "Rows of golden and pink macarons"
+    },
+    "heritage": {
+      "eyebrow": "Since 1862, Maison Ladurée",
+      "text": "Since 1862,<br></br> Maison Ladurée has embodied indulgence in the French art of living. An iconic institution, it meets each day with excellence the challenge of marrying tradition and innovation in its creations."
+    },
+    "idealBox": {
+      "eyebrow": "Personalisation",
+      "title": "Your Ideal Box",
+      "cta": "I compose my box",
+      "alt": "A pink macaron seen from above"
+    },
+    "tradition": {
+      "title": "TRADITION,<br></br> MEMORY & AUDACITY,<br></br> SINCE 1862",
+      "label": "savoir-faire",
+      "text": "Our ranges reflect our ambition: to offer a sensory pleasure based on taste, visual and olfactory sensations that plunge into the memory of childhood and tradition. Our creations recreate a world of softness, affection and indulgence. Our creativity, rooted in the present, clothes them in timelessness.",
+      "cta": "Learn more",
+      "alt": "An illustrated box of Ladurée macarons"
+    },
+    "stores": {
+      "title": "OUR ADDRESSES<br></br> AND RESTAURANTS",
+      "cta": "Our Boutiques",
+      "alt": "Facade of a Ladurée boutique"
+    }
+  },
+  "Entreprises": {
+    "navAria": "Corporate offers",
+    "nav": {
+      "cadeaux": "Gifts",
+      "personnalisation": "Personalisation",
+      "traiteur": "Catering",
+      "fournisseur": "Supplier",
+      "evenements": "Events"
+    },
+    "hero": {
+      "delivery": "home delivery",
+      "options": "5 options",
+      "title": "The art of the gift<br></br> and of the event",
+      "alt": "An oval Ladurée box offered from hand to hand",
+      "p1": "Our commercial team accompanies you in choosing your business gifts, organising your events (macaron orders, entremets, savoury and sweet cocktail pieces) and privatising our reception spaces.",
+      "p2": "We invite you to discover our offers for your clients and collaborators."
+    },
+    "offers": {
+      "cadeaux": {
+        "title": "Corporate gifts",
+        "alt": "Pastel macaron boxes on marble",
+        "cta": "Discover"
+      },
+      "fournisseur": {
+        "title": "Ladurée supplier offer",
+        "alt": "Rows of beige and pink macarons",
+        "cta": "Discover"
+      },
+      "personnalisation": {
+        "title": "Personalised gifts",
+        "alt": "An oval Ladurée box offered from hand to hand",
+        "cta": "Discover"
+      },
+      "traiteur": {
+        "title": "Our sweet and savoury offers",
+        "alt": "A Ladurée tea table with pastries and tea",
+        "cta": "Discover"
+      }
+    },
+    "contact": {
+      "title": "Our commercial team will advise you in order to meet your request.",
+      "label": "contact us",
+      "alt": "Open Ladurée Casablanca box, macarons and illustrated lid",
+      "email": "By email:",
+      "phone": "By phone:",
+      "hours": "(Monday to Friday inclusive)"
+    },
+    "perksAria": "Information",
+    "perks": {
+      "livraison": {
+        "title": "home delivery",
+        "text": "In France and in Europe. Courier delivery in Paris [and nearby suburbs]. Offered from €75 of purchase (see conditions)"
+      },
+      "froid": {
+        "title": "Cold Chain",
+        "text": "Orders shipped under controlled temperature [or chilled] the day before the desired reception."
+      },
+      "proteges": {
+        "title": "Protected Products",
+        "text": "Recyclable packing materials for perfect preservation and protection of the products."
+      },
+      "service": {
+        "title": "Customer Service",
+        "text": "Monday to Friday from 9am to 5pm by: Email at contact@laduree.com Form via the website"
+      }
+    }
+  },
+  "NotFound": {
+    "title": "OOPS!",
+    "text": "It seems that what you are looking for is no longer here...",
+    "cta": "Back to homepage",
+    "alt": "Pastel Ladurée macarons"
+  }
+}

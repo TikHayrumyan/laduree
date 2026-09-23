@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { EntreprisesContact } from "@/components/entreprises/contact-section";
 import { EntreprisesHero } from "@/components/entreprises/hero-section";
 import { OfferBanner } from "@/components/entreprises/offer-banner";
@@ -6,13 +6,22 @@ import { EntreprisesPerks } from "@/components/entreprises/perks-section";
 import { EntreprisesSubNav } from "@/components/entreprises/sub-nav";
 import { entreprisesOffers } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Service commercial | Ladurée Paris",
-  description:
-    "Cadeaux d’affaires, personnalisation, traiteur et évènements : l’équipe commerciale Ladurée vous accompagne.",
-};
+export async function generateMetadata() {
+  const t = await getTranslations("Metadata");
 
-export default function ServiceCommercialPage() {
+  return {
+    title: t("entreprises.title"),
+    description: t("entreprises.description"),
+    alternates: {
+      languages: {
+        fr: "/fr/service-commercial",
+        en: "/en/service-commercial",
+      },
+    },
+  };
+}
+
+export default async function ServiceCommercialPage() {
   return (
     <div className="flex min-h-full flex-col bg-cream pt-nav">
       <main className="flex flex-col items-center gap-10 lg:gap-20">

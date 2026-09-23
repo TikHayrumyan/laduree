@@ -9,10 +9,12 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useTranslations } from "next-intl";
 import { CtaButton } from "@/components/ui/cta-button";
 import type { EntreprisesOffer } from "@/lib/content";
 
 export function OfferBanner({ offer }: { offer: EntreprisesOffer }) {
+  const t = useTranslations(`Entreprises.offers.${offer.id}`);
   const frameRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -39,7 +41,7 @@ export function OfferBanner({ offer }: { offer: EntreprisesOffer }) {
       >
         <Image
           src={offer.image}
-          alt={offer.alt}
+          alt={t("alt")}
           fill
           className="object-cover"
           sizes="100vw"
@@ -49,10 +51,10 @@ export function OfferBanner({ offer }: { offer: EntreprisesOffer }) {
       <div className="absolute inset-0 bg-black/20" aria-hidden />
       <div className="relative flex w-full flex-col items-center gap-50 lg:gap-9">
         <h2 className="w-full text-center text-[36px] leading-none tracking-[-0.36px] text-balance text-white uppercase lg:max-w-[11.5em] lg:text-[60px] lg:tracking-[-0.6px]">
-          {offer.title}
+          {t("title")}
         </h2>
         <CtaButton href={offer.href} className="border-2 border-line">
-          {offer.ctaLabel}
+          {t("cta")}
         </CtaButton>
       </div>
     </section>

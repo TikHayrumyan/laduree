@@ -9,9 +9,11 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
+import { useTranslations } from "next-intl";
 import { TextLink } from "@/components/ui/text-link";
 
 function GiftImage() {
+  const t = useTranslations("Home.gifts");
   const frameRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
@@ -37,7 +39,7 @@ function GiftImage() {
       >
         <Image
           src="/images/gift-box.png"
-          alt="Coffret ovale Ladurée offert de main à main"
+          alt={t("alt")}
           fill
           className="object-cover"
           sizes="(max-width: 1023px) calc(100vw - 40px), 50vw"
@@ -48,6 +50,8 @@ function GiftImage() {
 }
 
 export function PersonalizedGiftsSection() {
+  const t = useTranslations("Home.gifts");
+
   return (
     <section
       id="personnaliser"
@@ -55,9 +59,7 @@ export function PersonalizedGiftsSection() {
     >
       <div className="flex w-full flex-col items-center gap-8 lg:h-full lg:flex-1 lg:justify-between lg:gap-0 lg:overflow-hidden">
         <h2 className="w-full text-center text-[32px] leading-9.5 tracking-[-0.32px] text-ink lg:text-[48px] lg:leading-14.5 lg:tracking-[-0.48px]">
-          IDEES CADEAUX
-          <br />
-          A PERSONNALISER
+          {t.rich("title", { br: () => <br /> })}
         </h2>
         <div
           className="h-45 w-0 border-l border-dashed border-ink/35 lg:h-69.75"
@@ -65,14 +67,13 @@ export function PersonalizedGiftsSection() {
         />
         <div className="flex w-90.5 flex-col items-center gap-8">
           <p className="text-center text-[18px] leading-5.5 tracking-[-0.18px] text-muted">
-            Anniversaire, remerciement, célébration… Composez un écrin raffiné
-            avec les créations Ladurée, à personnaliser en exclusivité en ligne.
+            {t("text")}
           </p>
           <TextLink
             href="/#coffret"
             className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
           >
-            Je personnalise mon coffret
+            {t("cta")}
           </TextLink>
         </div>
       </div>

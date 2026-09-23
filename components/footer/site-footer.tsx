@@ -1,17 +1,25 @@
 import Image from "next/image";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { ShopLink } from "@/components/header/shop-link";
 import { Icon } from "@/components/ui/icon";
-import { footerColumns, socialLinks } from "@/lib/content";
+import { footerColumnIds, socialLinks } from "@/lib/content";
 
-function NewsletterField() {
+function NewsletterField({
+  label,
+  placeholder,
+  submitAria,
+}: {
+  label: string;
+  placeholder: string;
+  submitAria: string;
+}) {
   return (
     <form className="flex w-full flex-col gap-2 lg:gap-6" action="#footer">
       <label
         htmlFor="newsletter-email"
         className="text-[18px] leading-5.5 tracking-[-0.18px] uppercase text-ink lg:text-[20px] lg:leading-6 lg:tracking-[-0.2px]"
       >
-        NEWSLETTER
+        {label}
       </label>
       <div className="flex items-start justify-between border-b-[0.5px] border-ink pb-2">
         <input
@@ -19,10 +27,10 @@ function NewsletterField() {
           name="email"
           type="email"
           autoComplete="email"
-          placeholder="Adresse email"
+          placeholder={placeholder}
           className="w-full bg-transparent text-[14px] leading-4.25 tracking-[-0.14px] text-ink placeholder:text-muted focus:outline-none lg:text-[18px] lg:leading-6 lg:tracking-[-0.18px]"
         />
-        <button type="submit" aria-label="S'inscrire à la newsletter">
+        <button type="submit" aria-label={submitAria}>
           <Icon src="/icons/arrow-right.svg" alt="" size={18} />
         </button>
       </div>
@@ -63,15 +71,15 @@ function FooterAccordion({
   );
 }
 
-function SocialRow() {
+function SocialRow({ follow }: { follow: string }) {
   return (
     <div className="flex w-full items-center justify-center gap-20 lg:w-63.75 lg:flex-col lg:items-start lg:gap-6">
       <p className="text-[18px] leading-5.5 tracking-[-0.18px] uppercase text-ink lg:text-[20px] lg:leading-6 lg:tracking-[-0.2px]">
-        Suivez-nous
+        {follow}
       </p>
       <div className="flex flex-1 items-center justify-between lg:flex-none lg:justify-start lg:gap-2">
         {socialLinks.map((social) => (
-          <Link
+          <a
             key={social.name}
             href={social.href}
             target="_blank"
@@ -85,14 +93,21 @@ function SocialRow() {
             <span className="hidden lg:inline-flex">
               <Icon src={social.icon} alt="" size={24} />
             </span>
-          </Link>
+          </a>
         ))}
       </div>
     </div>
   );
 }
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const t = await getTranslations("Footer");
+  const columns = footerColumnIds.map((id) => ({
+    id,
+    title: t(`columns.${id}.title`),
+    links: t.raw(`columns.${id}.links`) as string[],
+  }));
+
   return (
     <footer
       id="footer"
@@ -101,25 +116,29 @@ export function SiteFooter() {
       <div className="flex w-full flex-col items-end justify-end gap-10 border-b-[0.5px] border-footer-line px-5 pb-8 lg:gap-6 lg:px-12.5 lg:pb-15">
         <div className="flex w-full flex-col gap-8 lg:hidden">
           <FooterAccordion
-            title={footerColumns[0].title}
-            links={footerColumns[0].links}
+            title={columns[0].title}
+            links={columns[0].links}
             open
           />
           <div className="flex w-full flex-col gap-5">
-            {footerColumns.slice(1).map((column) => (
+            {columns.slice(1).map((column) => (
               <FooterAccordion
                 key={column.id}
                 title={column.title}
                 links={column.links}
               />
             ))}
-            <FooterAccordion title="LEGALS" links={["Mentions légales"]} />
-            <NewsletterField />
+            <FooterAccordion title={t("legals")} links={[t("legalNotice")]} />
+            <NewsletterField
+              label={t("newsletter")}
+              placeholder={t("emailPlaceholder")}
+              submitAria={t("subscribeAria")}
+            />
           </div>
         </div>
 
         <div className="hidden w-full items-start justify-between lg:flex">
-          {footerColumns.map((column) => (
+          {columns.map((column) => (
             <div
               id={column.id === "entreprises" ? "entreprises" : undefined}
               key={column.id}
@@ -143,16 +162,20 @@ export function SiteFooter() {
             </div>
           ))}
           <div className="w-63.75">
-            <NewsletterField />
+            <NewsletterField
+              label={t("newsletter")}
+              placeholder={t("emailPlaceholder")}
+              submitAria={t("subscribeAria")}
+            />
           </div>
         </div>
 
-        <SocialRow />
+        <SocialRow follow={t("follow")} />
       </div>
       <div className="relative h-51.5 w-38.5 lg:h-66.75 lg:w-50">
         <Image
           src="/images/crest.png"
-          alt="Emblème Ladurée Paris, maison fondée en 1862"
+          alt={t("crestAlt")}
           fill
           className="object-contain"
           sizes="(max-width: 1023px) 154px, 200px"

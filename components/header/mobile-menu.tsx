@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { LocaleSwitcher } from "@/components/header/locale-switcher";
 import {
   Sheet,
   SheetContent,
@@ -11,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { Icon } from "@/components/ui/icon";
 import { shopModes, type ShopCategory, type ShopMode } from "@/lib/content";
+import { Link } from "@/i18n/navigation";
 
 type MobileMenuProps = {
   open: boolean;
@@ -18,12 +20,6 @@ type MobileMenuProps = {
 };
 
 type View = "root" | "shop" | "category";
-
-const rootLinks = [
-  { href: "/service-commercial", label: "Entreprises" },
-  { href: "/#maison", label: "La Maison" },
-  { href: "/#footer", label: "Le Club Ladurée" },
-] as const;
 
 const itemClass =
   "flex w-full cursor-pointer items-center justify-between text-[24px] leading-7 tracking-[-0.24px] text-ink";
@@ -35,6 +31,9 @@ function MenuHeader({
   onClose: () => void;
   bordered?: boolean;
 }) {
+  const t = useTranslations("Nav");
+  const tCommon = useTranslations("Common");
+
   return (
     <div
       className={`flex w-full items-center justify-between px-5 py-4 ${
@@ -46,13 +45,13 @@ function MenuHeader({
         onClick={onClose}
         className="cursor-pointer text-[20px] leading-6 tracking-[-0.2px]"
       >
-        Fermer
+        {t("close")}
       </button>
       <Link
         href="/"
         onClick={onClose}
         className="w-logo text-center text-[32px] leading-9.5"
-        aria-label="Ladurée Paris, accueil"
+        aria-label={tCommon("logoAria")}
       >
         LADUREE
       </Link>
@@ -61,20 +60,22 @@ function MenuHeader({
         onClick={onClose}
         className="cursor-pointer text-[20px] leading-6 tracking-[-0.2px]"
       >
-        Panier
+        {t("cart")}
       </Link>
     </div>
   );
 }
 
 function BackRow({ title, onBack }: { title: string; onBack: () => void }) {
+  const t = useTranslations("Nav");
+
   return (
     <div className="relative flex w-full items-center justify-center p-5">
       <button
         type="button"
         onClick={onBack}
         className="absolute left-5 cursor-pointer"
-        aria-label="Retour"
+        aria-label={t("back")}
       >
         <Icon src="/icons/arrow-left.svg" alt="" size={24} current />
       </button>
@@ -92,6 +93,8 @@ function ModeSwitch({
   modeId: ShopMode["id"];
   onChange: (id: ShopMode["id"]) => void;
 }) {
+  const t = useTranslations("Shop");
+
   return (
     <div className="flex w-full items-center px-5">
       {shopModes.map((item) => {
@@ -108,7 +111,7 @@ function ModeSwitch({
                 : "border border-nav-line text-muted"
             }`}
           >
-            {item.label}
+            {t(`modes.${item.id}`)}
           </button>
         );
       })}
@@ -117,10 +120,17 @@ function ModeSwitch({
 }
 
 export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
+  const t = useTranslations("Nav");
+  const tShop = useTranslations("Shop");
   const [view, setView] = useState<View>("root");
   const [modeId, setModeId] = useState<ShopMode["id"]>("delivery");
   const [category, setCategory] = useState<ShopCategory | null>(null);
   const mode = shopModes.find((item) => item.id === modeId) ?? shopModes[0];
+  const rootLinks = [
+    { href: "/service-commercial", label: t("entreprises") },
+    { href: "/#maison", label: t("maison") },
+    { href: "/#footer", label: t("clubLong") },
+  ] as const;
 
   const handleOpenChange = (next: boolean) => {
     if (!next) {
@@ -133,6 +143,9 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
   };
 
   const close = () => handleOpenChange(false);
+  const categoryLinks = category
+    ? (tShop.raw(`categories.${category.id}.links`) as string[])
+    : [];
 
   return (
     <Sheet open={open} onOpenChange={handleOpenChange}>
@@ -142,10 +155,8 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
         overlayClassName="bg-cream"
         className="z-50 h-full w-full gap-0 overflow-hidden border-0 bg-cream p-0 shadow-none sm:max-w-none"
       >
-        <SheetTitle className="sr-only">Menu</SheetTitle>
-        <SheetDescription className="sr-only">
-          Navigation mobile Ladurée
-        </SheetDescription>
+        <SheetTitle className="sr-only">{t("menu")}</SheetTitle>
+        <SheetDescription className="sr-only">{t("mobileAria")}</SheetDescription>
 
         {view === "root" ? (
           <div className="flex h-full flex-col justify-between">
@@ -157,7 +168,7 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
               >
                 <Icon src="/icons/search.svg" alt="" size={18} current />
                 <span className="text-[20px] leading-6 tracking-[-0.2px]">
-                  Que recherchez-vous?
+                  {t("searchPlaceholder")}
                 </span>
               </button>
             </div>
@@ -168,7 +179,7 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
                 onClick={() => setView("shop")}
                 className={itemClass}
               >
-                E- Shop
+                {t("shop")}
                 <Icon src="/icons/caret-right.svg" alt="" size={16} current />
               </button>
               {rootLinks.map((item) => (
@@ -189,15 +200,11 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
                 onClick={close}
                 className="cursor-pointer border-y-[0.5px] border-nav-line py-4 text-[20px] leading-6 tracking-[-0.2px]"
               >
-                Mon Compte
+                {t("myAccount")}
               </Link>
-              <button
-                type="button"
-                className="flex cursor-pointer items-center gap-3 py-4 text-[20px] leading-6 tracking-[-0.2px]"
-              >
+              <LocaleSwitcher className="flex cursor-pointer items-center gap-3 py-4 text-[20px] leading-6 tracking-[-0.2px]">
                 <Icon src="/icons/globe.svg" alt="" size={20} current />
-                FR/English
-              </button>
+              </LocaleSwitcher>
             </div>
           </div>
         ) : null}
@@ -207,7 +214,7 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
             <div className="flex flex-col gap-5">
               <div>
                 <MenuHeader onClose={close} bordered />
-                <BackRow title="E- Shop" onBack={() => setView("root")} />
+                <BackRow title={t("shop")} onBack={() => setView("root")} />
                 <ModeSwitch
                   modeId={modeId}
                   onChange={(id) => {
@@ -227,7 +234,7 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
                     }}
                     className={itemClass}
                   >
-                    {item.title}
+                    {tShop(`categories.${item.id}.title`)}
                     <Icon
                       src="/icons/caret-right.svg"
                       alt=""
@@ -247,7 +254,7 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
               <div>
                 <MenuHeader onClose={close} bordered />
                 <BackRow
-                  title={category.title}
+                  title={tShop(`categories.${category.id}.title`)}
                   onBack={() => {
                     setCategory(null);
                     setView("shop");
@@ -255,7 +262,7 @@ export function MobileMenu({ open, onOpenChange }: MobileMenuProps) {
                 />
               </div>
               <div className="flex w-full flex-col gap-3 px-5">
-                {category.links.map((link) => (
+                {categoryLinks.map((link) => (
                   <Link
                     key={link}
                     href="/#iconiques"

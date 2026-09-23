@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { motion } from "motion/react";
 import {
@@ -31,6 +32,8 @@ function categoryTransition(index: number) {
 }
 
 export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
+  const t = useTranslations("Nav");
+  const tShop = useTranslations("Shop");
   const [modeId, setModeId] = useState<ShopMode["id"]>("delivery");
   const mode = shopModes.find((item) => item.id === modeId) ?? shopModes[0];
 
@@ -45,10 +48,8 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
         overlayClassName="z-30 bg-black/20"
         className="z-40 w-[calc(50%-6.28125rem)] max-w-155 gap-6.75 overflow-hidden border-0 bg-cream p-0 pt-29.25 shadow-none sm:max-w-180"
       >
-        <SheetTitle className="sr-only">E- Shop</SheetTitle>
-        <SheetDescription className="sr-only">
-          Navigation de la boutique Ladurée
-        </SheetDescription>
+        <SheetTitle className="sr-only">{t("shop")}</SheetTitle>
+        <SheetDescription className="sr-only">{t("shopAria")}</SheetDescription>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-nav border-b-[0.5px] border-nav-line/50"
@@ -69,7 +70,7 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
                       : "border border-nav-line text-muted"
                   }`}
                 >
-                  {item.label}
+                  {tShop(`modes.${item.id}`)}
                 </button>
               );
             })}
@@ -78,42 +79,48 @@ export function ShopMenu({ open, onOpenChange }: ShopMenuProps) {
             key={modeId}
             className="flex w-full flex-1 flex-col gap-4 overflow-y-auto pb-10 scrollbar-none"
           >
-            {mode.categories.map((category, index) => (
-              <motion.article
-                key={category.id}
-                initial={{ opacity: 0, y: 48 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={categoryTransition(index)}
-                className="flex w-full items-start justify-between"
-              >
-                <div className="flex min-w-0 flex-1 flex-col gap-3">
-                  <h2 className="text-[20px] leading-6 tracking-[-0.2px] text-ink">
-                    {category.title}
-                  </h2>
-                  <div className="flex flex-col gap-1 text-[18px] leading-5.5 tracking-[-0.18px] text-muted">
-                    {category.links.map((link) => (
-                      <ShopLink
-                        key={link}
-                        href="/#iconiques"
-                        onClick={close}
-                        className="text-muted hover:text-ink"
-                      >
-                        {link}
-                      </ShopLink>
-                    ))}
+            {mode.categories.map((category, index) => {
+              const links = tShop.raw(
+                `categories.${category.id}.links`,
+              ) as string[];
+
+              return (
+                <motion.article
+                  key={category.id}
+                  initial={{ opacity: 0, y: 48 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={categoryTransition(index)}
+                  className="flex w-full items-start justify-between"
+                >
+                  <div className="flex min-w-0 flex-1 flex-col gap-3">
+                    <h2 className="text-[20px] leading-6 tracking-[-0.2px] text-ink">
+                      {tShop(`categories.${category.id}.title`)}
+                    </h2>
+                    <div className="flex flex-col gap-1 text-[18px] leading-5.5 tracking-[-0.18px] text-muted">
+                      {links.map((link) => (
+                        <ShopLink
+                          key={link}
+                          href="/#iconiques"
+                          onClick={close}
+                          className="text-muted hover:text-ink"
+                        >
+                          {link}
+                        </ShopLink>
+                      ))}
+                    </div>
                   </div>
-                </div>
-                <div className="relative h-40 w-63.5 shrink-0 overflow-hidden">
-                  <Image
-                    src={category.image}
-                    alt=""
-                    fill
-                    className="object-cover"
-                    sizes="254px"
-                  />
-                </div>
-              </motion.article>
-            ))}
+                  <div className="relative h-40 w-63.5 shrink-0 overflow-hidden">
+                    <Image
+                      src={category.image}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="254px"
+                    />
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </SheetContent>
