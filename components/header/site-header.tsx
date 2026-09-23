@@ -16,19 +16,23 @@ const navLinkClass =
 const mutedLinkClass =
   "flex h-full cursor-pointer items-center text-[20px] leading-6 tracking-[-0.2px] text-muted";
 
-function Logo({ dark }: { dark: boolean }) {
+function Logo() {
   const t = useTranslations("Common");
 
   return (
     <Link
       href="/"
-      className={`flex w-logo cursor-pointer flex-col items-center transition-colors duration-700 ${dark ? "text-ink" : "text-white"}`}
+      className="flex h-full cursor-pointer items-center"
       aria-label={t("logoAria")}
     >
-      <span className="text-[32px] leading-9.5 lg:-mb-1">LADUREE</span>
-      <span className="hidden text-center text-[20px] leading-6 italic lg:block">
-        Paris
-      </span>
+      <span
+        aria-hidden
+        className="block aspect-282/102 w-28 bg-current lg:w-44"
+        style={{
+          mask: "url(/logos/2.svg) center / contain no-repeat",
+          WebkitMask: "url(/logos/2.svg) center / contain no-repeat",
+        }}
+      />
     </Link>
   );
 }
@@ -145,7 +149,7 @@ export function SiteHeader() {
           >
             {t("menu")}
           </button>
-          <Logo dark={dark} />
+          <Logo />
           <Link
             href="/#footer"
             className="cursor-pointer text-[20px] tracking-[-0.2px]"
@@ -175,7 +179,7 @@ export function SiteHeader() {
               {t("search")}
             </span>
           </div>
-          <Logo dark={dark} />
+          <Logo />
           <div className="flex h-full items-center justify-end gap-5 justify-self-end">
             <Link href="/#footer" className={navLinkClass} {...bind("right")}>
               {t("club")}

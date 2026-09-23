@@ -172,13 +172,13 @@ export async function SiteFooter() {
 
         <SocialRow follow={t("follow")} />
       </div>
-      <div className="relative h-51.5 w-38.5 lg:h-66.75 lg:w-50">
+      <div className="relative h-51.5 w-38.5 lg:h-96 lg:w-72">
         <Image
-          src="/images/crest.png"
-          alt={t("crestAlt")}
+          src="/logos/1.svg"
+          alt="Laduree paris footer logo"
           fill
-          className="object-contain"
-          sizes="(max-width: 1023px) 154px, 200px"
+          className="object-cover"
+          sizes="(max-width: 1023px) 154px, 288px"
         />
       </div>
     </footer>
