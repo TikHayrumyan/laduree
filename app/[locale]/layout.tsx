@@ -1,5 +1,6 @@
-import { NextIntlClientProvider } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
 import { locale as getLocale } from "next/root-params";
 import { preconnect } from "react-dom";
 import { SiteFooter } from "@/components/footer/site-footer";
@@ -31,6 +32,10 @@ export default async function LocaleLayout({
   children,
 }: LayoutProps<"/[locale]">) {
   const locale = await getLocale();
+
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
 
   preconnect("https://use.typekit.net");
   preconnect("https://p.typekit.net", { crossOrigin: "anonymous" });
