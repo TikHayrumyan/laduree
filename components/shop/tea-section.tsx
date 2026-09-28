@@ -10,7 +10,7 @@ export async function ShopTeaSection() {
         <p className="text-[20px] leading-6 tracking-[-0.2px] text-ink uppercase lg:order-2 lg:text-[32px] lg:leading-9.5 lg:tracking-[-0.32px]">
           {t("teaEyebrow")}
         </p>
-        <h2 className="w-full text-[24px] leading-7.25 tracking-[-0.24px] text-ink uppercase lg:order-3 lg:max-w-263 lg:text-[48px] lg:leading-14.5 lg:tracking-[-0.48px]">
+        <h2 className="w-full text-[24px] leading-7.25 tracking-[-0.24px] text-ink uppercase lg:order-3 lg:max-w-263 lg:text-[48px] lg:leading-14.5 lg:tracking-wide">
           {t("teaTitle")}
         </h2>
       </div>
@@ -23,7 +23,7 @@ export async function ShopTeaSection() {
           sizes="(max-width: 1023px) 100vw, 680px"
         />
       </div>
-      <p className="order-3 w-full px-5 text-center text-[18px] leading-5.5 tracking-[-0.18px] text-muted lg:order-4 lg:max-w-149.5 lg:px-0">
+      <p className="order-3 w-full px-5 text-center text-[18.2px] leading-5.5 tracking-[-0.18px]  text-muted lg:order-4 lg:max-w-149.5 lg:px-0">
         {t("teaText")}
       </p>
     </section>

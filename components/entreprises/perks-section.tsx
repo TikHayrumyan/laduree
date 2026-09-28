@@ -13,9 +13,9 @@ function PerkCard({
   text: string;
 }) {
   return (
-    <div className="flex w-full flex-col items-center gap-6 text-lg leading-5.5 tracking-[-0.18px]">
-      <p className="text-center text-ink uppercase">{title}</p>
-      <p className="w-full text-center text-muted">{text}</p>
+    <div className="flex w-full flex-col items-center gap-6 text-lg leading-5.5 tracking-[-0.18px] self-stretch ">
+      <p className="text-center text-ink uppercase ">{title}</p>
+      <p className="w-full text-center text-muted ">{text}</p>
     </div>
   );
 }
