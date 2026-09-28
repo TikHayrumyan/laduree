@@ -2,11 +2,19 @@ import { getTranslations } from "next-intl/server";
 import { ProductCard } from "@/components/home/product-card";
 import { CategoryBar } from "@/components/shop/category-bar";
 import { TextLink } from "@/components/ui/text-link";
-import { shopProducts } from "@/lib/content";
+import { shopCategorySlugs, shopProducts } from "@/lib/content";
 
-export async function ShopCatalog() {
+export async function ShopCatalog({
+  activeCategory,
+}: {
+  activeCategory?: string;
+}) {
   const t = await getTranslations("Eshop");
-  const categories = t.raw("categories") as string[];
+  const categoryLabels = await getTranslations("Eshop.categories");
+  const categories = shopCategorySlugs.map((slug) => ({
+    slug,
+    label: categoryLabels(slug),
+  }));
 
   return (
     <section
@@ -21,7 +29,11 @@ export async function ShopCatalog() {
         >
           {t.rich("title", { br: () => <br className="lg:hidden" /> })}
         </h1>
-        <CategoryBar categories={categories} filtersLabel={t("filters")} />
+        <CategoryBar
+          categories={categories}
+          activeCategory={activeCategory}
+          filtersLabel={t("filters")}
+        />
       </div>
       <div className="flex w-full flex-col items-center gap-6 px-5 lg:gap-12 lg:px-12.5">
         <div className="grid w-full grid-cols-2 gap-x-5 gap-y-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">

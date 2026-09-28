@@ -263,14 +263,14 @@
     "home": "Home",
     "title": "all our <br></br>products",
     "filters": "Filters",
-    "categories": [
-      "Macarons",
-      "Eugenie",
-      "Chocolates & Confectionery",
-      "Teas",
-      "Biscuits",
-      "Jams & Honey"
-    ],
+    "categories": {
+      "macarons": "Macarons",
+      "eugenie": "Eugenie",
+      "chocolates": "Chocolates & Confectionery",
+      "teas": "Teas",
+      "biscuits": "Biscuits",
+      "jams": "Jams & Honey"
+    },
     "cta": "Discover all",
     "teaEyebrow": "Our teas",
     "teaTitle": "Treat yourself to a gourmet break with our gift boxes, perfect for every occasion",

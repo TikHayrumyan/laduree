@@ -263,14 +263,14 @@
     "home": "Home",
     "title": "tous nos <br></br>produits",
     "filters": "Filters",
-    "categories": [
-      "Macarons",
-      "Eugenie",
-      "Chocolats & Confiserie",
-      "Thes",
-      "Biscuits",
-      "Confitures & Miel"
-    ],
+    "categories": {
+      "macarons": "Macarons",
+      "eugenie": "Eugenie",
+      "chocolates": "Chocolats & Confiserie",
+      "teas": "Thes",
+      "biscuits": "Biscuits",
+      "jams": "Confitures & Miel"
+    },
     "cta": "Tout découvrir",
     "teaEyebrow": "Nos thés",
     "teaTitle": "Offrez-vous une pause gourmande avec nos coffrets, parfaits pour toutes les occasions",

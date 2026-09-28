@@ -29,6 +29,15 @@ const shopRepeat = [
   },
 ] as const;
 
+export const shopCategorySlugs = [
+  "macarons",
+  "eugenie",
+  "chocolates",
+  "teas",
+  "biscuits",
+  "jams",
+] as const;
+
 export const shopProducts: Product[] = [
   {
     id: "shop-tiroirs",

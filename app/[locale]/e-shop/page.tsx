@@ -19,12 +19,19 @@ export async function generateMetadata() {
   };
 }
 
-export default function ShopPage() {
+export default async function ShopPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string | string[] }>;
+}) {
+  const { category } = await searchParams;
+  const activeCategory = Array.isArray(category) ? category[0] : category;
+
   return (
     <div className="flex min-h-full flex-col bg-cream pt-nav">
       <main className="flex flex-col gap-10 lg:gap-20">
         <ShopBreadcrumb />
-        <ShopCatalog />
+        <ShopCatalog activeCategory={activeCategory} />
         <div className="flex w-full flex-col gap-10">
           <ShopTeaSection />
           <EntreprisesPerks />
