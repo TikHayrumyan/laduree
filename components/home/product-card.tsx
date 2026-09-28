@@ -59,7 +59,7 @@ export function ProductCard({ product }: ProductCardProps) {
           </span>
         </motion.div>
       </div>
-      <div className="flex w-full flex-col items-center gap-2 text-center text-[16px] leading-[1.2] tracking-[-0.16px]">
+      <div className="flex w-full flex-col items-center gap-2 text-center text-[16px] leading-4.75 tracking-[-0.16px]">
         <h3 className="text-ink">{product.name}</h3>
         <p className="text-muted">{product.price}</p>
       </div>
