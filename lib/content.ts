@@ -6,6 +6,57 @@ export type Product = {
   wide?: boolean;
 };
 
+const shopRepeat = [
+  {
+    name: 'Coffret de 28 macarons "Intemporel" – Bleu',
+    price: "60 EUR",
+    image: "/images/product-1.png",
+  },
+  {
+    name: 'Coffret de 35 macarons "Intemporel" – Pêche',
+    price: "102 EUR",
+    image: "/images/product-1.png",
+  },
+  {
+    name: 'Coffret de 15 macarons "Intemporel" – Rose',
+    price: "102 EUR",
+    image: "/images/product-3.png",
+  },
+  {
+    name: 'Coffret de 35 macarons "Intemporel" – Pêche',
+    price: "102 EUR",
+    image: "/images/product-3.png",
+  },
+] as const;
+
+export const shopProducts: Product[] = [
+  {
+    id: "shop-tiroirs",
+    name: "Boîte à tiroirs de 32 macarons et 18 Eugénie",
+    price: "60 EUR",
+    image: "/images/product-2.png",
+    wide: true,
+  },
+  {
+    id: "shop-mimosa",
+    name: 'Coffret de 18 macarons "Mimosa"',
+    price: "102 EUR",
+    image: "/images/product-1.png",
+  },
+  {
+    id: "shop-napoleon",
+    name: 'Coffret de 42 macarons "Napoléon" - or',
+    price: "123 EUR",
+    image: "/images/product-3.png",
+  },
+  ...[0, 1, 2, 3].flatMap((row) =>
+    shopRepeat.map((product, index) => ({
+      ...product,
+      id: `shop-${row}-${index}`,
+    })),
+  ),
+];
+
 export const products: Product[] = [
   {
     id: "mimosa-18",

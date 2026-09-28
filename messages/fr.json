@@ -11,6 +11,10 @@
     "notFound": {
       "title": "Page introuvable | Ladurée Paris",
       "description": "La page que vous cherchez n’est plus ici. Retrouvez les macarons et pâtisseries Ladurée sur l’accueil."
+    },
+    "shop": {
+      "title": "E-Shop | Ladurée Paris",
+      "description": "Tous les coffrets Ladurée : macarons, Eugénie, chocolats, thés, biscuits, confitures et miel."
     }
   },
   "Common": {
@@ -253,6 +257,25 @@
         "text": "Du lundi au vendredi de 9H à 17H par : Mail à contact@laduree.com Formulaire via le site"
       }
     }
+  },
+  "Eshop": {
+    "breadcrumbAria": "Fil d’Ariane",
+    "home": "Home",
+    "title": "tous nos <br></br>produits",
+    "filters": "Filters",
+    "categories": [
+      "Macarons",
+      "Eugenie",
+      "Chocolats & Confiserie",
+      "Thes",
+      "Biscuits",
+      "Confitures & Miel"
+    ],
+    "cta": "Tout découvrir",
+    "teaEyebrow": "Nos thés",
+    "teaTitle": "Offrez-vous une pause gourmande avec nos coffrets, parfaits pour toutes les occasions",
+    "teaText": "Maison Ladurée, initiatrice du macaron à double coque depuis plus de 160 ans, imagine des macarons savoureux pour éveiller les sens comme l’esprit. Au choix, des assortiments de parfums de macarons iconiques, aux saveurs classiques, gourmandes ou encore fruitées. Pour un coffret personnalisé, créez sur mesure votre sélection parmi nos parfums emblématiques (chocolat, framboise, citron, pistache, vanille…) et saisonniers",
+    "teaAlt": "Coffret ovale Ladurée offert de main à main"
   },
   "NotFound": {
     "title": "OOPS!",

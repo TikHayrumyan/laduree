@@ -45,7 +45,7 @@ export async function IconiquesSection() {
       </div>
 
       <TextLink
-        href="/#iconiques"
+        href="/e-shop"
         className="text-[20px] leading-6 tracking-[-0.2px] text-ink"
       >
         {t("cta")}

@@ -11,6 +11,10 @@
     "notFound": {
       "title": "Page not found | Ladurée Paris",
       "description": "The page you are looking for is no longer here. Discover Ladurée macarons and pastries on the homepage."
+    },
+    "shop": {
+      "title": "E-Shop | Ladurée Paris",
+      "description": "Every Ladurée gift box: macarons, Eugénie, chocolates, teas, biscuits, jams and honey."
     }
   },
   "Common": {
@@ -253,6 +257,25 @@
         "text": "Monday to Friday from 9am to 5pm by: Email at contact@laduree.com Form via the website"
       }
     }
+  },
+  "Eshop": {
+    "breadcrumbAria": "Breadcrumb",
+    "home": "Home",
+    "title": "all our <br></br>products",
+    "filters": "Filters",
+    "categories": [
+      "Macarons",
+      "Eugenie",
+      "Chocolates & Confectionery",
+      "Teas",
+      "Biscuits",
+      "Jams & Honey"
+    ],
+    "cta": "Discover all",
+    "teaEyebrow": "Our teas",
+    "teaTitle": "Treat yourself to a gourmet break with our gift boxes, perfect for every occasion",
+    "teaText": "Maison Ladurée, creator of the double-shell macaron for more than 160 years, imagines flavours that awaken the senses as much as the spirit. Choose from iconic assortments, classic, indulgent or fruity. For a personalised box, compose your own selection from our signature flavours (chocolate, raspberry, lemon, pistachio, vanilla…) and the seasonal ones",
+    "teaAlt": "An oval Ladurée box passed from hand to hand"
   },
   "NotFound": {
     "title": "OOPS!",
