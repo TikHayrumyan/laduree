@@ -33,6 +33,7 @@ export async function ShopCatalog({
           categories={categories}
           activeCategory={activeCategory}
           filtersLabel={t("filters")}
+          seeAllLabel={t("seeAll")}
         />
       </div>
       <div className="flex w-full flex-col items-center gap-6 px-5 lg:gap-12 lg:px-12.5">
